@@ -1,0 +1,19 @@
+version: '3'
+services:
+  db:
+    image: postgres
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.web
+    tty: true
+    environment:
+      - public_ip=0.0.0.0
+      - firebase_token=<dein token hier>
+    command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/flight_booking
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
