@@ -1,0 +1,455 @@
+.w-checkbox {
+  display: block;
+  margin-bottom: 5px;
+  padding-left: 20px;
+}
+
+.w-checkbox:before {
+  content: ' ';
+  display: table;
+  -ms-grid-column-span: 1;
+  grid-column-end: 2;
+  -ms-grid-column: 1;
+  grid-column-start: 1;
+  -ms-grid-row-span: 1;
+  grid-row-end: 2;
+  -ms-grid-row: 1;
+  grid-row-start: 1;
+}
+
+.w-checkbox:after {
+  content: ' ';
+  display: table;
+  -ms-grid-column-span: 1;
+  grid-column-end: 2;
+  -ms-grid-column: 1;
+  grid-column-start: 1;
+  -ms-grid-row-span: 1;
+  grid-row-end: 2;
+  -ms-grid-row: 1;
+  grid-row-start: 1;
+  clear: both;
+}
+
+.w-checkbox-input {
+  float: left;
+  margin-bottom: 0px;
+  margin-left: -20px;
+  margin-right: 0px;
+  margin-top: 4px;
+  line-height: normal;
+}
+
+.div-block {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-right: 0px;
+  margin-bottom: 11px;
+  padding-right: 0px;
+  padding-bottom: 10px;
+  padding-left: 22px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+  background-color: #3898ec;
+}
+
+.section {
+  height: auto;
+  background-color: transparent;
+}
+
+.section.header {
+  height: 30vh;
+}
+
+.div-block-2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100%;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background-color: #fff;
+}
+
+.div-block-3 {
+  height: 100%;
+  background-color: #15504c;
+}
+
+.div-block-3.inputheader {
+  background-color: #f1f1f1;
+}
+
+.text-field {
+  width: 30%;
+  margin-top: 14px;
+  margin-left: -22px;
+  padding-right: 13px;
+  padding-left: 0px;
+  border-style: solid;
+  border-width: 0px 0px 2px;
+  border-color: #000;
+  background-color: transparent;
+}
+
+.form {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 50%;
+  height: 100%;
+  margin-top: 4px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-top: 49px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: stretch;
+  -webkit-align-items: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+}
+
+.field-label {
+  margin-bottom: 27px;
+  padding-bottom: 0px;
+  color: #000;
+  font-weight: 400;
+}
+
+.form-block {
+  height: 100%;
+}
+
+.div-block-4 {
+  width: 30vh;
+  height: 10vh;
+  background-color: transparent;
+}
+
+.div-block-5 {
+  width: 30vh;
+  height: 10vh;
+  background-color: transparent;
+}
+
+.columns {
+  height: 10vh;
+  margin-bottom: 62px;
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 auto;
+  -ms-flex: 0 auto;
+  flex: 0 auto;
+}
+
+.text-field-2 {
+  border-style: solid;
+  border-width: 0px 0px 2px;
+  border-color: #000;
+  background-color: transparent;
+}
+
+.submit-button {
+  position: relative;
+  left: 7px;
+  top: auto;
+  right: 15%;
+  bottom: 0%;
+  width: 30%;
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+}
+
+.div-block-6 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  padding-top: 16px;
+  padding-right: 11px;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+}
+
+.button {
+  width: 15vh;
+  height: 5vh;
+  padding-top: 12px;
+  border-radius: 5px;
+  font-size: 18px;
+  text-align: center;
+}
+
+.radio-button-field {
+  padding-right: 61px;
+}
+
+.radio-button-field-2 {
+  padding-right: 31px;
+}
+
+.div-block-7 {
+  margin-bottom: 18px;
+}
+
+.text-field-3 {
+  border-style: solid;
+  border-width: 0px 0px 2px;
+  border-color: #000;
+  background-color: transparent;
+  background-image: url('../images/icons8-calendar.png');
+  background-position: 90% 50%;
+  background-size: 17px;
+  background-repeat: no-repeat;
+}
+
+.text-field-4 {
+  border-style: solid;
+  border-width: 0px 0px 2px;
+  border-color: #000;
+  background-color: transparent;
+  background-image: url('../images/icons8-calendar.png');
+  background-position: 90% 50%;
+  background-size: 17px;
+  background-repeat: no-repeat;
+}
+
+.text-field-5 {
+  border-style: solid;
+  border-width: 0px 0px 2px;
+  border-color: #000;
+  background-color: transparent;
+}
+
+.text-field-6 {
+  border-style: solid;
+  border-width: 0px 0px 2px;
+  border-color: #000;
+  background-color: transparent;
+}
+
+.text-block {
+  font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+  font-size: 28px;
+  line-height: 29px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.image {
+  position: absolute;
+  left: auto;
+  top: -6%;
+  right: 0%;
+  bottom: 0%;
+  display: block;
+}
+
+.columns-2 {
+  margin-bottom: 49px;
+}
+
+.image-2 {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 15px;
+}
+
+.section-2 {
+  height: 50vh;
+}
+
+.div-block-8 {
+  height: 100%;
+  margin-bottom: 29px;
+  padding-bottom: 27px;
+}
+
+.container {
+  display: block;
+  margin-top: 63px;
+  margin-bottom: 78px;
+  padding-bottom: 14px;
+  clear: none;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+}
+
+.heading {
+  display: block;
+  margin-bottom: -10px;
+  color: #d1d1d1;
+}
+
+.image-3 {
+  margin-top: 18px;
+}
+
+.div-block-9 {
+  height: 100%;
+  background-color: #3898ec;
+}
+
+.image-4 {
+  margin-top: 29px;
+  padding-top: 2px;
+}
+
+.section-3 {
+  height: 10vh;
+}
+
+@media (max-width: 991px) {
+  .form {
+    width: 80%;
+  }
+  .columns {
+    margin-bottom: 15px;
+  }
+  .div-block-6 {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 auto;
+    -ms-flex: 0 auto;
+    flex: 0 auto;
+  }
+  .image {
+    display: none;
+  }
+  .container {
+    padding-left: 83px;
+  }
+  .column {
+    margin-bottom: 20px;
+  }
+  .column-2 {
+    margin-bottom: 20px;
+  }
+  .div-block-10 {
+    width: 30%;
+  }
+  .div-block-11 {
+    width: 30%;
+  }
+  .div-block-12 {
+    width: 30%;
+  }
+}
+
+@media (max-width: 767px) {
+  .form {
+    width: 90%;
+  }
+  .columns {
+    margin-bottom: 115px;
+  }
+  .container {
+    padding-right: 67px;
+  }
+  .div-block-10 {
+    width: 50%;
+  }
+  .div-block-11 {
+    width: 50%;
+  }
+  .div-block-12 {
+    width: 50%;
+  }
+}
+
+@media (max-width: 479px) {
+  .section.header {
+    height: 20vh;
+  }
+  .div-block-6 {
+    margin-right: -21px;
+    padding-right: 22px;
+    padding-left: 15px;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: start;
+    -webkit-align-items: flex-start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+  }
+  .button {
+    margin-top: 32px;
+    padding-top: 12px;
+  }
+  .radio-button-field {
+    margin-top: 21px;
+  }
+  .section-2 {
+    margin-right: -17px;
+    padding-right: 16px;
+  }
+  .section-2.faq {
+    display: none;
+  }
+  .div-block-8 {
+    margin-right: -11px;
+    margin-left: 0px;
+    padding-right: 11px;
+  }
+  .container {
+    padding-right: 38px;
+    padding-left: 14px;
+  }
+  .container.work {
+    padding-left: 28px;
+  }
+  .heading {
+    width: 80%;
+  }
+}
