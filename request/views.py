@@ -8,10 +8,12 @@ from django.core.mail import EmailMessage
 class SendMailView(View):
     def dispatch(self, request, *args, **kwargs):
         if self.request.method == "POST":
-            from_ = self.request.POST.get("field")
-            to = self.request.POST.get("field-2")
-            amount_passengers = self.request.POST.get("field-5")
-            email = EmailMessage("subject", "body", to=["mbijou@live.de", "osman_2008@hotmail.de"])
+            flight_from = self.request.POST.get("flight_from")
+            flight_to = self.request.POST.get("flight_to")
+            amount_passengers = self.request.POST.get("amount_passengers")
+            body = "Abflug von: " + flight_from + "\n" + "Ankunft in: " + flight_to + "\n" + "Anzahl Passagiere: "\
+                   + amount_passengers
+            email = EmailMessage("subject", body, to=["mbijou@live.de", "osman_2008@hotmail.de"])
             status = email.send()
             if status == 1:
                 return JsonResponse(data={"message": "Email wurde erfolgreich abgesendet", "status": "SUCCESS"},

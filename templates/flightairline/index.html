@@ -238,10 +238,15 @@
         $_1(document).ready(function () {
             document.getElementById("suchen").onclick = function (e) {
                 alert("yes " + "{% url 'request:mail' %}");
+                let flight_from = document.getElementById("field").value();
+                let flight_to = document.getElementById("field-2").value();
+                let amount_passengers = document.getElementById("field-5").value();
+
                 $.ajax({
                     method: "POST",
                     url: "{% url 'request:mail' %}",
-                    data: {field: "John", field_2: "Boston", field_5: "joo", "csrfmiddlewaretoken": "{{ csrf_token }}"}
+                    data: {flight_from: flight_from, flight_to: flight_to, amount_passengers: amount_passengers,
+                        "csrfmiddlewaretoken": "{{ csrf_token }}"}
                 })
                     .done(function (msg) {
                         alert("Data Saved: " + msg);
