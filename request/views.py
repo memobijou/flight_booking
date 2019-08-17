@@ -1,8 +1,24 @@
 import os, json
 from django.http import JsonResponse
-from django.shortcuts import render
-# Create your views here.
+from django.views import View
 from data import __file__
+from django.core.mail import EmailMessage
+
+
+class SendMailView(View):
+    def dispatch(self, request, *args, **kwargs):
+        if self.request.method == "POST":
+            from_ = self.request.POST.get("field")
+            to = self.request.POST.get("field-2")
+            amount_passengers = self.request.POST.get("field-5")
+            email = EmailMessage("subject", "body", to=["mbijou@live.de", "osman_2008@hotmail.de"])
+            status = email.send()
+            if status == 1:
+                return JsonResponse(data={"message": "Email wurde erfolgreich abgesendet", "status": "SUCCESS"},
+                                    status=201, safe=False)
+            else:
+                return JsonResponse(data={"message": "Email konnte nicht abgesendet werden", "status": "FAILURE"},
+                                    status=500, safe=False)
 
 
 def airport_api_view(request):

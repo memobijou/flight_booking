@@ -20,5 +20,5 @@ from django.views.generic import TemplateView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', TemplateView.as_view(template_name="flightairline/index.html")),
-    path('airport/api/', include('request.urls'))
+    path('airport/', include(('request.urls', "request"), namespace="request"))
 ]

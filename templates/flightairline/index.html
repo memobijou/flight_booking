@@ -234,6 +234,21 @@
                 },
             });
         });
+
+        $_1(document).ready(function () {
+            document.getElementById("suchen").onclick = function (e) {
+                alert("yes " + "{% url 'request:mail' %}");
+                $.ajax({
+                    method: "POST",
+                    url: "{% url 'request:mail' %}",
+                    data: {field: "John", field_2: "Boston", field_5: "joo", "csrfmiddlewaretoken": "{{ csrf_token }}"}
+                })
+                    .done(function (msg) {
+                        alert("Data Saved: " + msg);
+                    });
+
+            };
+        });
     </script>
 </div>
 <script crossorigin="anonymous" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
