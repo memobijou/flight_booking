@@ -245,6 +245,8 @@
 
         });
 
+
+
         $_1(document).ready(function () {
             document.getElementById("suchen").onclick = function (e) {
                 alert("yes " + "{% url 'request:mail' %}");
@@ -254,16 +256,41 @@
                 let date_from = document.getElementById("abflugdatum").value;
                 let date_to = document.getElementById("rueckflugdatum").value;
 
+                let economy = document.getElementById("economy");
+                let economy_input = economy.getElementsByTagName("input")[0];
+
+                let business = document.getElementById("business");
+                let business_input = business.getElementsByTagName("input")[0];
+
+                let type = "";
+
+                if(business_input.checked){
+                    type = "Business";
+                }else if(economy_input.checked){
+                    type="Economy";
+                }
+
+                let roundtrip_input = document.getElementById("checkbox-2");
+
+                let roundtrip = "";
+
+                if(roundtrip_input.checked) {
+                    roundtrip = "Rück und Hinflug";
+                }else{
+                    roundtrip = "Nur Hinflug";
+                }
+
                 $.ajax({
                     method: "POST",
                     url: "{% url 'request:mail' %}",
                     data: {
                         flight_from: flight_from, flight_to: flight_to, amount_passengers: amount_passengers,
-                        date_from: date_from, date_to: date_to, "csrfmiddlewaretoken": "{{ csrf_token }}"
+                        date_from: date_from, date_to: date_to, "csrfmiddlewaretoken": "{{ csrf_token }}",
+                        type: type, roundtrip: roundtrip
                     }
                 })
                     .done(function (msg) {
-                        alert("Data Saved: " + msg);
+                        alert("Anfrage erfolgreich abgesendet");
                     });
 
             };

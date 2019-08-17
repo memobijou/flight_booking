@@ -13,13 +13,17 @@ class SendMailView(View):
             date_from = self.request.POST.get("date_from")
             date_to = self.request.POST.get("date_to")
             amount_passengers = self.request.POST.get("amount_passengers")
+            type_ = self.request.POST.get("type")
+            roundtrip = self.request.POST.get("roundtrip")
             body = "<strong>Abflug</strong><br/>"
             body += f"&nbsp;&nbsp;&nbsp;&nbsp;<strong>Von: </strong>: {flight_from}<br/>"
             body += f"&nbsp;&nbsp;&nbsp;&nbsp;<strong>Datum: </strong>: {date_from}<br/>"
             body += "<strong>Ankunft</strong><br/>"
             body += f"&nbsp;&nbsp;&nbsp;&nbsp;<strong>Nach: </strong>: {flight_to}<br/>"
-            body += f"&nbsp;&nbsp;&nbsp;&nbsp;<b>Datum: </b>: {date_to}<br/>"
-            body += f"Anzahl Passagiere: {amount_passengers}<br/>"
+            body += f"&nbsp;&nbsp;&nbsp;&nbsp;<strong>Datum: </strong>: {date_to}<br/>"
+            body += f"<strong>Anzahl Passagiere:</strong> {amount_passengers}<br/>"
+            body += f"<strong>Klasse:</strong> {type_}<br/>"
+            body += f"<strong>{roundtrip}</strong><br/>"
             email = EmailMessage("subject", body, to=["mbijou@live.de", "osman_2008@hotmail.de"])
             email.content_subtype = "html"
             status = email.send()
