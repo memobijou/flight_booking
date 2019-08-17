@@ -21,6 +21,7 @@ class SendMailView(View):
             body += f"\t<b>Datum: </b>: {date_to}\n"
             body += f"Anzahl Passagiere: {amount_passengers}\n"
             email = EmailMessage("subject", body, to=["mbijou@live.de", "osman_2008@hotmail.de"])
+            email.content_subtype = "html"
             status = email.send()
             if status == 1:
                 return JsonResponse(data={"message": "Email wurde erfolgreich abgesendet", "status": "SUCCESS"},
