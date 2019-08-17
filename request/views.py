@@ -13,11 +13,11 @@ class SendMailView(View):
             date_from = self.request.POST.get("date_from")
             date_to = self.request.POST.get("date_to")
             amount_passengers = self.request.POST.get("amount_passengers")
-            body = "<b>Abflug</b>\n"
-            body += f"\t<b>Von: </b>: {flight_from}\n"
-            body += f"\t<b>Datum: </b>: {date_from}\n"
-            body += "<b>Ankunft</b>\n"
-            body += f"\t<b>Nach: </b>: {flight_to}\n"
+            body = "<strong>Abflug</strong>\n"
+            body += f"\t<strong>Von: </strong>: {flight_from}\n"
+            body += f"\t<strong>Datum: </strong>: {date_from}\n"
+            body += "<strong>Ankunft</strong>\n"
+            body += f"\t<strong>Nach: </strong>: {flight_to}\n"
             body += f"\t<b>Datum: </b>: {date_to}\n"
             body += f"Anzahl Passagiere: {amount_passengers}\n"
             email = EmailMessage("subject", body, to=["mbijou@live.de", "osman_2008@hotmail.de"])
