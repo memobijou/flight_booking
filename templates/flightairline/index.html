@@ -214,6 +214,8 @@
     </script>
     <script src="{% static 'vendor/jquery/js/jquery-1-12.js' %}">
     </script>
+    <script src="{% static 'vendor/jquery/js/datepicker-de.js' %}"></script>
+
     <script>
         $_1('head').append('<link rel="stylesheet" type="text/css" href="///code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">');
         $_1('head').append('<link rel="stylesheet" type="text/css" href="flightairline//resources/demos/style.css">');
@@ -233,6 +235,14 @@
                     });
                 },
             });
+
+            $_1(function () {
+                $_1.datepicker.setDefaults($_1.datepicker.regional["de"]);
+                $_1("#abflugdatum").datepicker();
+                $_1("#rueckflugdatum").datepicker();
+
+            });
+
         });
 
         $_1(document).ready(function () {
@@ -241,12 +251,16 @@
                 let flight_from = document.getElementById("von").value;
                 let flight_to = document.getElementById("nach").value;
                 let amount_passengers = document.getElementById("passagiere").value;
+                let date_from = document.getElementById("abflugdatum").value;
+                let date_to = document.getElementById("rueckflugdatum").value;
 
                 $.ajax({
                     method: "POST",
                     url: "{% url 'request:mail' %}",
-                    data: {flight_from: flight_from, flight_to: flight_to, amount_passengers: amount_passengers,
-                        "csrfmiddlewaretoken": "{{ csrf_token }}"}
+                    data: {
+                        flight_from: flight_from, flight_to: flight_to, amount_passengers: amount_passengers,
+                        date_from: date_from, date_to: date_to, "csrfmiddlewaretoken": "{{ csrf_token }}"
+                    }
                 })
                     .done(function (msg) {
                         alert("Data Saved: " + msg);

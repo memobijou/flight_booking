@@ -10,9 +10,16 @@ class SendMailView(View):
         if self.request.method == "POST":
             flight_from = self.request.POST.get("flight_from")
             flight_to = self.request.POST.get("flight_to")
+            date_from = self.request.POST.get("date_from")
+            date_to = self.request.POST.get("date_to")
             amount_passengers = self.request.POST.get("amount_passengers")
-            body = "Abflug von: " + flight_from + "\n" + "Ankunft in: " + flight_to + "\n" + "Anzahl Passagiere: "\
-                   + amount_passengers
+            body = "<b>Abflug</b>\n"
+            body += f"\t<b>Von: </b>: {flight_from}\n"
+            body += f"\t<b>Datum: </b>: {date_from}\n"
+            body += "<b>Ankunft</b>\n"
+            body += f"\t<b>Nach: </b>: {flight_to}\n"
+            body += f"\t<b>Datum: </b>: {date_to}\n"
+            body += f"Anzahl Passagiere: {amount_passengers}\n"
             email = EmailMessage("subject", body, to=["mbijou@live.de", "osman_2008@hotmail.de"])
             status = email.send()
             if status == 1:
