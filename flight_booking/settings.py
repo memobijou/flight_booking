@@ -155,6 +155,5 @@ EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
 EMAIL_PORT = 587
 if os.environ.get("EMAIL_HOST_USER"):
-    prefix, suffix = os.environ.get("EMAIL_HOST_USER").split("@")[0]
-    DEFAULT_FROM_EMAIL = os.environ.get("EMAIL_HOST_USER").split("@")[0].replace(os.environ.get(
-        "EMAIL_HOST_USER").split("@")[0], "no-replay") + "@" + suffix
+    _, mail_domain = os.environ.get("EMAIL_HOST_USER").split("@")
+    DEFAULT_FROM_EMAIL = "no-replay" + "@" + mail_domain
