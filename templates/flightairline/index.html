@@ -238,9 +238,9 @@
         $_1(document).ready(function () {
             document.getElementById("suchen").onclick = function (e) {
                 alert("yes " + "{% url 'request:mail' %}");
-                let flight_from = document.getElementById("von").value();
-                let flight_to = document.getElementById("nach").value();
-                let amount_passengers = document.getElementById("passagiere").value();
+                let flight_from = document.getElementById("von").value;
+                let flight_to = document.getElementById("nach").value;
+                let amount_passengers = document.getElementById("passagiere").value;
 
                 $.ajax({
                     method: "POST",
