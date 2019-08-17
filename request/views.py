@@ -39,27 +39,27 @@ def airport_api_view(request):
     with open(os.path.dirname(__file__) + "/airports_output.json", "r") as f:
         json_data = json.load(f)
 
-    with open(os.path.dirname(__file__) + "/german_cities.json", "r") as f:
-        cities = json.load(f)
-
-    with open(os.path.dirname(__file__) + "/german_countries.json", "r") as f:
-        countries = json.load(f)
-
-    with open(os.path.dirname(__file__) + "/german_names.json", "r") as f:
-        airport_names = json.load(f)
-
-    with open(os.path.dirname(__file__) + "/german_iata.json", "r") as f:
-        iatas = json.load(f)
+    # with open(os.path.dirname(__file__) + "/german_cities.json", "r") as f:
+    #     cities = json.load(f)
+    #
+    # with open(os.path.dirname(__file__) + "/german_countries.json", "r") as f:
+    #     countries = json.load(f)
+    #
+    # with open(os.path.dirname(__file__) + "/german_names.json", "r") as f:
+    #     airport_names = json.load(f)
+    #
+    # with open(os.path.dirname(__file__) + "/german_iata.json", "r") as f:
+    #     iatas = json.load(f)
 
     result = []
     q = request.GET.get("q")
     if q is not None and q != "":
         q = q.lower()
-
-        cities = get_cities(q, cities)
-        countries = get_countries(q, countries)
-        airport_names = get_airport_names(q, airport_names)
-        iatas = get_iatas(q, iatas)
+        #
+        # cities = get_cities(q, cities)
+        # countries = get_countries(q, countries)
+        # airport_names = get_airport_names(q, airport_names)
+        # iatas = get_iatas(q, iatas)
 
         for index in json_data:
             row = json_data[index]
@@ -78,40 +78,48 @@ def airport_api_view(request):
 
             representation = representation.lower()
 
-            iata_match = None
-            for iata in iatas:
-                if representation.startswith(f"{iata} "):
-                    result = [row]
-                    iata_match = True
-                    break
+            match = True
+            for single_q in q.split(" "):
+                if single_q not in representation:
+                    match = False
 
-            if iata_match is True:
-                break
-
-            order = 0
-
-            for city in cities:
-                if representation.startswith(f"{city} ") or representation.endswith(f" {city}") \
-                        or f" {city}," in representation:
-                    order += 1
-
-            for country in countries:
-                if representation.startswith(f"{country} ") or representation.endswith(f" {country}") \
-                        or f" {country} " in representation:
-                    order += 1
-
-            if order == 1:
-                if iata:
-                    order = order + 1
+            if match is True:
                 result.append(row)
-            elif order == 2:
-                if iata:
-                    order = order + 1
-                    result.insert(0, row)
-                else:
-                    result.insert(1, row)
 
-            row["order"] = order
+            # iata_match = None
+            # for iata in iatas:
+            #     if representation.startswith(f"{iata} "):
+            #         result = [row]
+            #         iata_match = True
+            #         break
+            #
+            # if iata_match is True:
+            #     break
+
+            # order = 0
+            #
+            # for city in cities:
+            #     if representation.startswith(f"{city} ") or representation.endswith(f" {city}") \
+            #             or f" {city}," in representation:
+            #         order += 1
+            #
+            # for country in countries:
+            #     if representation.startswith(f"{country} ") or representation.endswith(f" {country}") \
+            #             or f" {country} " in representation:
+            #         order += 1
+            #
+            # if order == 1:
+            #     if iata:
+            #         order = order + 1
+            #     result.append(row)
+            # elif order == 2:
+            #     if iata:
+            #         order = order + 1
+            #         result.insert(0, row)
+            #     else:
+            #         result.insert(1, row)
+            #
+            # row["order"] = order
     result = result[:10]
     endresult = []
     for row in result:
