@@ -101,13 +101,13 @@
                         <div class="form-group">
                             <div class="form-checkbox" id="rountrip_or_one_way">
                                 <label for="roundtrip">
-                                    <input id="roundtrip" name="flight-type" type="radio"/>
+                                    <input id="roundtrip" value="Hin- und Rückflug" name="flight-type" type="radio"/>
                                     <span>
            </span>
                                     Hin- und Rückflug
                                 </label>
                                 <label for="one-way">
-                                    <input id="one-way" name="flight-type" type="radio"/>
+                                    <input id="one-way" value="Nur Hinflug" name="flight-type" type="radio"/>
                                     <span>
            </span>
                                     Nur Hinflug
@@ -313,6 +313,8 @@
                 flight_type = flight_type_selection.val();
             }
             let phone = document.getElementById("phone").value;
+
+            alert(flight_type);
 
             $.ajax({
                 method: "POST",
