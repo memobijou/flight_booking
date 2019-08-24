@@ -1,308 +1,338 @@
 {% load static %}
 <!DOCTYPE html>
-<!--  This site was created in Webflow. http://www.webflow.com  -->
-<!--  Last Published: Fri Aug 16 2019 21:49:00 GMT+0000 (UTC)  -->
-<html data-wf-page="5d5435d5140131ee42cfe02b" data-wf-site="5d5435d51401318b9dcfe02a">
+<html lang="en">
 <head>
     <meta charset="utf-8"/>
-    <title>
-        FlightAirline
-    </title>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
     <meta content="width=device-width, initial-scale=1" name="viewport"/>
-    <meta content="Webflow" name="generator"/>
-    <link href="{% static 'flightairline/css/normalize.css' %}" rel="stylesheet" type="text/css"/>
-    <link href="{% static 'flightairline/css/webflow.css' %}" rel="stylesheet" type="text/css"/>
-    <link href="{% static 'flightairline/css/flightairline.webflow.css' %}" rel="stylesheet" type="text/css"/>
-    <!-- [if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js" type="text/javascript"></script>
-    <![endif] -->
-    <script type="text/javascript">
-        !function (o, c) {
-            var n = c.documentElement, t = " w-mod-";
-            n.className += t + "js", ("ontouchstart" in o || o.DocumentTouch && c instanceof DocumentTouch) && (n.className += t + "touch")
-        }(window, document);
-    </script>
-    <link href="{% static 'flightairline/icons/favicon.ico' %}" rel="shortcut icon" type="image/x-icon"/>
-    <link href="{% static 'flightairline/icons/webclip.png' %}" rel="apple-touch-icon"/>
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>
+        Airplane
+    </title>
+    <!-- Google font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet"/>
+    <!-- Bootstrap -->
+    <link href="{% static 'flightairline/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css"/>
+    <!-- Custom stlylesheet -->
+    <link href="{% static 'flightairline/css/style.css' %}" rel="stylesheet" type="text/css">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>              <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>              <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        .navbar {
+            margin-top: 20px;
+        }
+
+        .navbar-default .navbar-nav > li > a {
+            text-transform: uppercase;
+            letter-spacing: .5px;
+            font-size: 16px;
+        }
+
+        .navbar-default {
+            background: transparent;
+            border-color: transparent;
+        }
+    </style>
+    </link>
 </head>
 <body>
-<div>
-    <div class="div-block">
-        <img alt="" class="image-2" height="55" sizes="55px"
-             src="{% static 'flightairline/images/580b57fcd9996e24bc43c516.png' %}"
-             srcset="{% static 'flightairline/images/580b57fcd9996e24bc43c516-p-500.png' %} 500w,  {% static 'flightairline/images/580b57fcd9996e24bc43c516.png' %} 1000w"
-             width="55"/>
-    </div>
-</div>
-<div class="section header">
-    <div class="div-block-2">
-        <div class="text-block">
-            Find cheap flight
-            <br/>
-            on Trivago
+<div class="section" id="booking" style="height:78vh;">
+    <section id="menu">
+        <div class="container">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button aria-expanded="false" class="navbar-toggle collapsed" data-target="#header"
+                                data-toggle="collapse" type="button">
+         <span class="sr-only">
+          Toggle navigation
+         </span>
+                            <span class="icon-bar">
+         </span>
+                            <span class="icon-bar">
+         </span>
+                            <span class="icon-bar">
+         </span>
+                        </button>
+                        <a class="navbar-brand text-dark" href="#" style="font-size:35px;color:#292b2c;">
+                            Airplane
+                        </a>
+                    </div>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="header">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="dropdown">
+                                <a aria-expanded="false" aria-haspopup="true" class="dropdown-toggle"
+                                   data-toggle="dropdown" href="#" role="button">
+                                    Über uns
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    Unser Team
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    Kontakt
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    Datenschutz
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /.navbar-collapse -->
+                </div>
+                <!-- /.container-fluid -->
+            </nav>
         </div>
-    </div>
-</div>
-<div class="section">
-    <div class="div-block-3 inputheader">
-        <div class="form-block w-form">
-            <form class="form" data-name="Email Form" id="email-form" name="email-form">
-                <div class="div-block-7">
-                    <label class="w-checkbox">
-                        <input checked="" class="w-checkbox-input" data-name="Checkbox" id="checkbox" name="checkbox"
-                               type="checkbox"/>
-                        <span class="w-form-label">
-         Hinflug
-        </span>
-                    </label>
-                    <label class="w-checkbox">
-                        <input class="w-checkbox-input" data-name="Checkbox 2" id="checkbox-2" name="checkbox-2"
-                               type="checkbox"/>
-                        <span class="w-form-label">
-         Rück und Hinflug
-        </span>
-                    </label>
-                </div>
-                <div class="columns w-row">
-                    <div class="w-col w-col-6 w-col-medium-6">
-                        <div class="div-block-4">
-                            <label>
-                                Von
-                            </label>
-                            <input class="text-field-2 w-input" data-name="Field" id="von" maxlength="256" name="field"
-                                   placeholder="Frankfurt am Main" required="" type="text"/>
+    </section>
+    <div class="container" style="padding-top:5px;">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="booking-form">
+                    <form>
+                        <div class="form-group">
+                            <div class="form-checkbox" id="rountrip_or_one_way">
+                                <label for="roundtrip">
+                                    <input id="roundtrip" name="flight-type" type="radio"/>
+                                    <span>
+           </span>
+                                    Hin- und Rückflug
+                                </label>
+                                <label for="one-way">
+                                    <input id="one-way" name="flight-type" type="radio"/>
+                                    <span>
+           </span>
+                                    Nur Hinflug
+                                </label>
+                            </div>
                         </div>
-                    </div>
-                    <div class="w-col w-col-6 w-col-medium-6">
-                        <div class="div-block-5">
-                            <label>
-                                Nach
-                            </label>
-                            <input class="text-field-5 w-input" data-name="Field 2" id="nach" maxlength="256"
-                                   name="field-2" placeholder="New York" required="" type="text"/>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+           <span class="form-label">
+            Abflug von
+           </span>
+                                    <input class="form-control" id="flight_from" placeholder="Stadt oder Flughafen" type="text"/>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+           <span class="form-label">
+            Ankunft in
+           </span>
+                                    <input class="form-control" id="flight_to" placeholder="Stadt oder Flughafen" type="text"/>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="columns-2 w-row">
-                    <div class="column w-col w-col-3 w-col-stack w-col-small-small-stack">
-                        <div class="div-block-10">
-                            <label>
-                                Abflug Datum
-                            </label>
-                            <input class="text-field-3 w-input" data-name="Field 3" id="abflugdatum" maxlength="256"
-                                   name="field-3" placeholder="15.08.19" required="" type="text"/>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+           <span class="form-label">
+            Abflugsdatum
+           </span>
+                                    <input class="form-control" required="" id="departure_date"/>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+           <span class="form-label">
+            Rückflugsdatum
+           </span>
+                                    <input class="form-control" required="" id="return_flight_date"/>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="column-2 w-col w-col-3 w-col-stack w-col-small-small-stack">
-                        <div class="div-block-11">
-                            <label>
-                                Rückflug Datum
-                            </label>
-                            <input class="text-field-4 w-input" data-name="Field 4" id="rueckflugdatum" maxlength="256"
-                                   name="field-4" placeholder="18.18.19" required="" type="text"/>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+           <span class="form-label">
+            Erwachsene (18+)
+           </span>
+                                    <select class="form-control" id="adults">
+                                        <option>
+                                            1
+                                        </option>
+                                        <option>
+                                            2
+                                        </option>
+                                        <option>
+                                            3
+                                        </option>
+                                    </select>
+                                    <span class="select-arrow">
+           </span>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+           <span class="form-label">
+            Kinder (0-17)
+           </span>
+                                    <select class="form-control" id="children">
+                                        <option>
+                                            0
+                                        </option>
+                                        <option>
+                                            1
+                                        </option>
+                                        <option>
+                                            2
+                                        </option>
+                                    </select>
+                                    <span class="select-arrow">
+           </span>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+           <span class="form-label">
+            Reiseklasse
+           </span>
+                                    <select class="form-control" id="travel_class">
+                                        <option>
+                                            Economy
+                                        </option>
+                                        <option>
+                                            Business
+                                        </option>
+                                        <option>
+                                            Erste Klasse
+                                        </option>
+                                    </select>
+                                    <span class="select-arrow">
+           </span>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+           <span class="form-label">
+            Rufnummer
+           </span>
+                                    <input class="form-control" placeholder="Ihre Rufnummer" type="text" id="phone"/>
+                                    <!--<p class="help-block">Tragen Sie Ihre Rufnummer ein und wir rufen Sie an</p>-->
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="w-col w-col-6 w-col-stack w-col-small-small-stack">
-                        <div class="div-block-12">
-                            <label>
-                                Passagiere
-                            </label>
-                            <input class="text-field-6 w-input" data-name="Field 5" id="passagiere" maxlength="256"
-                                   name="field-5" placeholder="1 Erwachsener" required="" type="text"/>
+                        <div class="form-btn">
+                            <button class="submit-btn" id="submit_request">
+                                Anfrage versenden
+                            </button>
                         </div>
-                    </div>
-                </div>
-                <div class="div-block-6">
-                    <label class="radio-button-field-2 w-radio" id="economy">
-                        <input class="w-radio-input" data-name="ClassOfService" name="ClassOfService" type="radio"
-                               value="economy"/>
-                        <span class="w-form-label" for="economy-2">
-         Economy
-        </span>
-                    </label>
-                    <label class="radio-button-field w-radio" id="business">
-                        <input class="w-radio-input" data-name="ClassOfService" name="ClassOfService" type="radio"
-                               value="business"/>
-                        <span class="w-form-label" for="business-2">
-         Business
-        </span>
-                    </label>
-                    <a class="button w-button" href="#" id="suchen">
-                        Suchen
-                    </a>
-                </div>
-            </form>
-            <div class="w-form-done">
-                <div>
-                    Thank you! Your submission has been received!
+                    </form>
                 </div>
             </div>
-            <div class="w-form-fail">
-                <div>
-                    Oops! Something went wrong while submitting the form.
+            <div class="col-md-12" style="padding-top:35px;">
+                <div class="col-md-4 text-center">
+                    <h3>
+        <span class="glyphicon glyphicon-edit">
+        </span>
+                        <br/>
+                        <br/>
+                        Flug auswählen und Eckdaten eintragen
+                    </h3>
+                </div>
+                <div class="col-md-4 text-center">
+                    <h3>
+        <span class="glyphicon glyphicon-send">
+        </span>
+                        <br/>
+                        <br/>
+                        Anfrage versenden
+                    </h3>
+                </div>
+                <div class="col-md-4 text-center">
+                    <h3>
+        <span class="glyphicon glyphicon-earphone">
+        </span>
+                        <br/>
+                        <br/>
+                        Warten Sie auf unseren Anruf
+                        <br/>
+                        :-)
+                    </h3>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<img alt="" class="image" src="{% static 'flightairline/images/airplaneHalf.png' %}" width="450"/>
-<div class="section-2">
-    <div class="div-block-8">
-        <div class="container work w-container">
-            <h1>
-                Understand how it works?
-            </h1>
-            <h3 class="heading">
-                FIRST STEP
-            </h3>
-            <h5 class="heading">
-                ENTER YOUR DATA
-            </h5>
-            <h3 class="heading">
-                SECOND STEP
-            </h3>
-            <h5 class="heading">
-                CLICK ON SEND
-            </h5>
-            <h3 class="heading">
-                THIRD STEP
-            </h3>
-            <h5 class="heading">
-                WAIT FOR OUR CALL
-            </h5>
-            <img alt="" class="image-3" src="{% static 'flightairline/images/icons8-ok_filled.png' %}" width="44"/>
-        </div>
-    </div>
-</div>
-<div class="section-2 faq">
-    <div class="div-block-8">
-        <div class="container w-container">
-            <h1>
-                FAQ
-            </h1>
-            <h3 class="heading">
-                HOW MANY MINUTES I HAVE TO WAIT
-            </h3>
-            <h5 class="heading">
-                ENTER YOUR DATA
-            </h5>
-            <h3 class="heading">
-                CAN YOU FIND ANYTHING?
-            </h3>
-            <h5 class="heading">
-                CLICK ON SEND
-            </h5>
-            <h3 class="heading">
-                HOW CHEAP ARE THE FLIGHTS?
-            </h3>
-            <h5 class="heading">
-                WAIT FOR OUR CALL
-            </h5>
-            <img alt="" class="image-4" src="{% static 'flightairline/images/icons8-question_mark_filled.png' %}"
-                 width="44"/>
-        </div>
-    </div>
-</div>
-<div class="section-3">
-    <div class="div-block-9">
-    </div>
-</div>
-<div class="w-embed w-script">
-    <script src="https://code.jquery.com/jquery-1.12.4.js">
-    </script>
-    <script type="text/javascript">
-        var $_1 = $.noConflict(true);
-    </script>
-    <script src="{% static 'vendor/jquery/js/jquery-1-12.js' %}">
-    </script>
-    <script src="{% static 'vendor/jquery/js/datepicker-de.js' %}"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js">
+</script>
+<script type="text/javascript">
+    var $_1 = $.noConflict(true);
+</script>
+<script src="{% static 'vendor/jquery/js/jquery-1-12.js' %}">
+</script>
+<script src="{% static 'vendor/jquery/js/datepicker-de.js' %}"></script>
 
-    <script>
-        $_1('head').append('<link rel="stylesheet" type="text/css" href="///code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">');
-        $_1('head').append('<link rel="stylesheet" type="text/css" href="flightairline//resources/demos/style.css">');
+<script>
+    $_1('head').append('<link rel="stylesheet" type="text/css" href="///code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">');
+    $_1('head').append('<link rel="stylesheet" type="text/css" href="flightairline//resources/demos/style.css">');
+    $_1(function () {
+        var airports = ["aa"];
+        $_1("#flight_from").autocomplete({
+            source: function (request, response) {
+                $.get("/airport/api", {q: request.term}, function (data) {
+                    response(data);
+                });
+            },
+        });
+        $_1("#flight_to").autocomplete({
+            source: function (request, response) {
+                $.get("/airport/api", {q: request.term}, function (data) {
+                    response(data);
+                });
+            },
+        });
         $_1(function () {
-            var airports = ["aa"];
-            $_1("#von").autocomplete({
-                source: function (request, response) {
-                    $.get("/airport/api", {q: request.term}, function (data) {
-                        response(data);
-                    });
-                },
-            });
-            $_1("#nach").autocomplete({
-                source: function (request, response) {
-                    $.get("/airport/api", {q: request.term}, function (data) {
-                        response(data);
-                    });
-                },
-            });
-
-            $_1(function () {
-                $_1.datepicker.setDefaults($_1.datepicker.regional["de"]);
-                $_1("#abflugdatum").datepicker();
-                $_1("#rueckflugdatum").datepicker();
-
-            });
-
+            $_1.datepicker.setDefaults($_1.datepicker.regional["de"]);
+            $_1("#departure_date").datepicker();
+            $_1("#return_flight_date").datepicker();
         });
+    });
+    $_1(document).ready(function () {
+        document.getElementById("submit_request").onclick = function (e) {
+            alert("yes " + "{% url 'request:mail' %}");
+            let flight_from = document.getElementById("flight_from").value;
+            let flight_to = document.getElementById("flight_to").value;
+            let amount_adults = document.getElementById("adults").options[document.getElementById("adults").selectedIndex].value;
+            let amount_children = document.getElementById("children").options[document.getElementById("children").selectedIndex].value;
+            let departure_date = document.getElementById("departure_date").value;
+            let return_flight_date = document.getElementById("return_flight_date").value;
+            let travel_class = document.getElementById("travel_class").options[document.getElementById("travel_class").selectedIndex].value;
+            let flight_type = $_1('input[name=flight-type]:checked').val();
+            let phone = document.getElementById("phone").value;
 
-
-
-        $_1(document).ready(function () {
-            document.getElementById("suchen").onclick = function (e) {
-                alert("yes " + "{% url 'request:mail' %}");
-                let flight_from = document.getElementById("von").value;
-                let flight_to = document.getElementById("nach").value;
-                let amount_passengers = document.getElementById("passagiere").value;
-                let date_from = document.getElementById("abflugdatum").value;
-                let date_to = document.getElementById("rueckflugdatum").value;
-
-                let economy = document.getElementById("economy");
-                let economy_input = economy.getElementsByTagName("input")[0];
-
-                let business = document.getElementById("business");
-                let business_input = business.getElementsByTagName("input")[0];
-
-                let type = "";
-
-                if(business_input.checked){
-                    type = "Business";
-                }else if(economy_input.checked){
-                    type="Economy";
+            $.ajax({
+                method: "POST",
+                url: "{% url 'request:mail' %}",
+                data: {
+                    flight_from: flight_from, flight_to: flight_to, amount_adults: amount_adults,
+                    amount_children: amount_children, departure_date: departure_date,
+                    return_flight_date: return_flight_date, "csrfmiddlewaretoken": "{{ csrf_token }}",
+                    travel_class: travel_class, flight_type: flight_type, phone: phone
                 }
+            })
+                .done(function (msg) {
+                    alert("Anfrage erfolgreich abgesendet");
+            });
 
-                let roundtrip_input = document.getElementById("checkbox-2");
-
-                let roundtrip = "";
-
-                if(roundtrip_input.checked) {
-                    roundtrip = "Rück und Hinflug";
-                }else{
-                    roundtrip = "Nur Hinflug";
-                }
-
-                $.ajax({
-                    method: "POST",
-                    url: "{% url 'request:mail' %}",
-                    data: {
-                        flight_from: flight_from, flight_to: flight_to, amount_passengers: amount_passengers,
-                        date_from: date_from, date_to: date_to, "csrfmiddlewaretoken": "{{ csrf_token }}",
-                        type: type, roundtrip: roundtrip
-                    }
-                })
-                    .done(function (msg) {
-                        alert("Anfrage erfolgreich abgesendet");
-                    });
-
-            };
-        });
-    </script>
+        };
+    });
+</script>
 </div>
 <script crossorigin="anonymous" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
         src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.4.1.min.220afd743d.js" type="text/javascript">
 </script>
 <script src="{% static 'flightairline/js/webflow.js' %}" type="text/javascript">
 </script>
-<!-- [if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script>
-<![endif] -->
 </body>
 </html>
+<!-- This templates was made by Colorlib (https://colorlib.com) -->

@@ -10,20 +10,26 @@ class SendMailView(View):
         if self.request.method == "POST":
             flight_from = self.request.POST.get("flight_from")
             flight_to = self.request.POST.get("flight_to")
-            date_from = self.request.POST.get("date_from")
-            date_to = self.request.POST.get("date_to")
-            amount_passengers = self.request.POST.get("amount_passengers")
-            type_ = self.request.POST.get("type")
-            roundtrip = self.request.POST.get("roundtrip")
+            departure_date = self.request.POST.get("departure_date")
+            return_flight_date = self.request.POST.get("return_flight_date")
+            amount_adults = self.request.POST.get("amount_adults")
+            amount_children = self.request.POST.get("amount_children")
+            travel_class = self.request.POST.get("travel_class")
+            flight_type = self.request.POST.get("flight_type")
+            phone = self.request.POST.get("phone")
+
             body = "<strong>Abflug</strong><br/>"
             body += f"&nbsp;&nbsp;&nbsp;&nbsp;<strong>Von: </strong>: {flight_from}<br/>"
-            body += f"&nbsp;&nbsp;&nbsp;&nbsp;<strong>Datum: </strong>: {date_from}<br/>"
+            body += f"&nbsp;&nbsp;&nbsp;&nbsp;<strong>Datum: </strong>: {departure_date}<br/>"
             body += "<strong>Ankunft</strong><br/>"
             body += f"&nbsp;&nbsp;&nbsp;&nbsp;<strong>Nach: </strong>: {flight_to}<br/>"
-            body += f"&nbsp;&nbsp;&nbsp;&nbsp;<strong>Datum: </strong>: {date_to}<br/>"
-            body += f"<strong>Anzahl Passagiere:</strong> {amount_passengers}<br/>"
-            body += f"<strong>Klasse:</strong> {type_}<br/>"
-            body += f"<strong>{roundtrip}</strong><br/>"
+            body += "<strong>Rückflug</strong><br/>"
+            body += f"&nbsp;&nbsp;&nbsp;&nbsp;<strong>Datum: </strong>: {return_flight_date}<br/>"
+            body += f"<strong>Anzahl Erwachsene:</strong> {amount_adults}<br/>"
+            body += f"<strong>Anzahl Kinder:</strong> {amount_children}<br/>"
+            body += f"<strong>Reiseklasse:</strong> {travel_class}<br/>"
+            body += f"<strong>{flight_type}</strong><br/>"
+            body += f"<strong>Rufnummer: </strong>{phone}<br/>"
             email = EmailMessage("subject", body, to=["mbijou@live.de", "osman_2008@hotmail.de"])
             email.content_subtype = "html"
             status = email.send()
