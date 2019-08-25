@@ -14,7 +14,7 @@
 
 #booking {
 	font-family: 'Lato', sans-serif;
-	background-image: url('../img/background.jpg');
+	background-image: url('../img/bg9.jpg');
 	background-size: cover;
 	background-position: center;
 	color: #191a1e;
@@ -108,7 +108,7 @@
 	line-height: 24px;
 	height: 24px;
 	font-size: 12px;
-	color: #98c9ee;
+	color: #292b2c;
 }
 
 .booking-form .form-checkbox input {
@@ -167,7 +167,7 @@
 
 .booking-form .submit-btn {
 	color: #fff;
-	background-color: #4fa3e3;
+	background-color: #FF8800;
 	font-weight: 400;
 	height: 65px;
 	font-size: 18px;
@@ -191,4 +191,11 @@
 .booking-cta p {
 	font-size: 22px;
 	color: #191a1e;
+}
+
+
+/* CUSTOM */
+
+.navbar-default .navbar-nav > li > a {
+	color: white;
 }
