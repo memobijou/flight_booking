@@ -3,6 +3,7 @@ from django.http import JsonResponse
 from django.views import View
 from data import __file__
 from django.core.mail import EmailMessage
+from django.conf import settings
 
 
 class SendMailView(View):
@@ -30,7 +31,8 @@ class SendMailView(View):
             body += f"<strong>Reiseklasse:</strong> {travel_class}<br/>"
             body += f"<strong>{flight_type}</strong><br/>"
             body += f"<strong>Rufnummer: </strong>{phone}<br/>"
-            email = EmailMessage("subject", body, to=["mbijou@live.de", "osman_2008@hotmail.de"])
+            email = EmailMessage("subject", body, to=["mbijou@live.de", "osman_2008@hotmail.de"],
+                                 from_email=settings.EMAIL_HOST_USER)
             email.content_subtype = "html"
             status = email.send()
             if status == 1:
