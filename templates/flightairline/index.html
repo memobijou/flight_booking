@@ -309,7 +309,6 @@
     });
     $_1(document).ready(function () {
         document.getElementById("submit_request").onclick = function (e) {
-            alert("yes " + "{% url 'request:mail' %}");
             let flight_from = document.getElementById("flight_from").value;
             let flight_to = document.getElementById("flight_to").value;
             let amount_adults = document.getElementById("adults").options[document.getElementById("adults").selectedIndex].value;
@@ -323,8 +322,6 @@
                 flight_type = flight_type_selection.val();
             }
             let phone = document.getElementById("phone").value;
-
-            alert(flight_type);
 
             $.ajax({
                 method: "POST",
