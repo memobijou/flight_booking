@@ -23,7 +23,7 @@ class SendMailView(View):
             body += f"&nbsp;&nbsp;&nbsp;&nbsp;<strong>Von: </strong>: {flight_from}<br/>"
             body += f"&nbsp;&nbsp;&nbsp;&nbsp;<strong>Datum: </strong>: {departure_date}<br/>"
             body += "<strong>Ankunft</strong><br/>"
-            body += f"&nbsp;&nbsp;&nbsp;&nbsp;<strong>Nach: </strong>: {flight_to}<br/>"
+            body += f"&nbsp;&nbsp;&nbsp;&nbsp;<strong>In: </strong>: {flight_to}<br/>"
             body += "<strong>Rückflug</strong><br/>"
             body += f"&nbsp;&nbsp;&nbsp;&nbsp;<strong>Datum: </strong>: {return_flight_date}<br/>"
             body += f"<strong>Anzahl Erwachsene:</strong> {amount_adults}<br/>"
