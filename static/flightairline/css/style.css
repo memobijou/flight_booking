@@ -14,11 +14,17 @@
 
 #booking {
 	font-family: 'Lato', sans-serif;
-	background-image: url('../img/bg9.jpg');
-	background-size: cover;
-	background-position: center;
+
 	color: #191a1e;
 }
+
+
+#bg_container {
+		background-image: url('../img/bg9.jpg');
+	background-size: cover;
+	background-position: center;
+}
+
 
 .booking-form {
 	position: relative;

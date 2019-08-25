@@ -27,7 +27,6 @@
             margin-top: 20px;
         }
 
-
         .navbar-default .navbar-nav > li > a {
             text-transform: uppercase;
             letter-spacing: .5px;
@@ -41,248 +40,252 @@
     </style>
 </head>
 <body>
-<div class="section" id="booking" style="height:78vh;">
-    <section id="menu">
-        <div class="container">
-            <nav class="navbar navbar-default">
-                <div class="container-fluid">
-                    <!-- Brand and toggle get grouped for better mobile display -->
-                    <div class="navbar-header">
-                        <button aria-expanded="false" class="navbar-toggle collapsed" data-target="#header"
-                                data-toggle="collapse" type="button">
-         <span class="sr-only">
-          Toggle navigation
-         </span>
-                            <span class="icon-bar">
-         </span>
-                            <span class="icon-bar">
-         </span>
-                            <span class="icon-bar">
-         </span>
-                        </button>
-                        <a class="navbar-brand text-dark" href="#" style="font-size:35px;color:#292b2c;">
-                            Airplane
-                        </a>
-                    </div>
-                    <!-- Collect the nav links, forms, and other content for toggling -->
-                    <div class="collapse navbar-collapse" id="header">
-                        <ul class="nav navbar-nav navbar-right">
-                            <li class="dropdown">
-                                <a aria-expanded="false" aria-haspopup="true" class="dropdown-toggle"
-                                   data-toggle="dropdown" href="#" role="button">
-                                    Über uns
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    Unser Team
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    Kontakt
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    Datenschutz
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- /.navbar-collapse -->
-                </div>
-                <!-- /.container-fluid -->
-            </nav>
-        </div>
-    </section>
-    <div class="container" style="padding-top:5px;">
-        <div class="row">
-            <div class="col-md-6 col-md-offset-3">
-                <div class="booking-form">
-                    <form>
-                        <div class="form-group">
-                            <div class="form-checkbox" id="rountrip_or_one_way">
-                                <label for="roundtrip">
-                                    <input id="roundtrip" value="Hin- und Rückflug" name="flight-type" type="radio"/>
-                                    <span>
-           </span>
-                                    Hin- und Rückflug
-                                </label>
-                                <label for="one-way">
-                                    <input id="one-way" value="Nur Hinflug" name="flight-type" type="radio"/>
-                                    <span>
-           </span>
-                                    Nur Hinflug
-                                </label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-           <span class="form-label">
-               Abflug von
-           </span>
-                                    <input class="form-control" id="flight_from" placeholder="Stadt oder Flughafen" type="text"/>
-                                    <span class="form-control-feedback">
-                                        <i class="fas fa-plane-departure"></i>
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-           <span class="form-label">
-            Ankunft in
-           </span>
-                                    <input class="form-control" id="flight_to" placeholder="Stadt oder Flughafen" type="text"/>
-                                    <span class="form-control-feedback">
-                                        <i class="fas fa-plane-arrival"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-           <span class="form-label">
-            Abflugsdatum
-           </span>
-                                    <input class="form-control" required="" id="departure_date" placeholder="tt.mm.jjjj"/>
-                                    <span class="glyphicon glyphicon-calendar form-control-feedback" aria-hidden="true"></span>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-           <span class="form-label">
-            Rückflugsdatum
-           </span>
-                                    <input class="form-control" required="" id="return_flight_date" placeholder="tt.mm.jjjj"/>
-                                    <span class="glyphicon glyphicon-calendar form-control-feedback" aria-hidden="true"></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="form-group">
-           <span class="form-label">
-            Erwachsene (18+)
-           </span>
-                                    <select class="form-control" id="adults">
-                                        <option>
-                                            1
-                                        </option>
-                                        <option>
-                                            2
-                                        </option>
-                                        <option>
-                                            3
-                                        </option>
-                                    </select>
-                                    <span class="select-arrow">
-           </span>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-           <span class="form-label">
-            Kinder (0-17)
-           </span>
-                                    <select class="form-control" id="children">
-                                        <option>
-                                            0
-                                        </option>
-                                        <option>
-                                            1
-                                        </option>
-                                        <option>
-                                            2
-                                        </option>
-                                    </select>
-                                    <span class="select-arrow">
-           </span>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-           <span class="form-label">
-            Reiseklasse
-           </span>
-                                    <select class="form-control" id="travel_class">
-                                        <option>
-                                            Economy
-                                        </option>
-                                        <option>
-                                            Business
-                                        </option>
-                                        <option>
-                                            Erste Klasse
-                                        </option>
-                                    </select>
-                                    <span class="select-arrow">
-           </span>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group">
-           <span class="form-label">
-            Rufnummer
-           </span>
-                                    <input class="form-control" placeholder="Ihre Rufnummer" type="text" id="phone"/>
-                                    <!--<p class="help-block">Tragen Sie Ihre Rufnummer ein und wir rufen Sie an</p>-->
-                                    <span class="form-control-feedback">
-                                        <i class="glyphicon glyphicon-earphone"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-btn">
-                            <button class="submit-btn" type="button" id="submit_request">
-                                Anfrage versenden
+<div class="section" id="booking">
+    <div id="bg_container">
+        <section id="menu">
+            <div class="container">
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button aria-expanded="false" class="navbar-toggle collapsed" data-target="#header"
+                                    data-toggle="collapse" type="button">
+             <span class="sr-only">
+              Toggle navigation
+             </span>
+                                <span class="icon-bar">
+             </span>
+                                <span class="icon-bar">
+             </span>
+                                <span class="icon-bar">
+             </span>
                             </button>
+                            <a class="navbar-brand text-dark" href="#" style="font-size:35px;color:#292b2c;">
+                                Airplane
+                            </a>
                         </div>
-
-                        <div class="alert alert-success alert-dismissible" id="success_box" style="margin-top:15px;display:none;">
-                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                                                        <p class="text-center">
-                           <span class="glyphicon glyphicon-thumbs-up" style="font-size:2.0em;"></span>
-                        </p>
-                            Ihre Anfrage wurde erfolgreich versendet. Sie werden in kürze von uns angerufen.
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="header">
+                            <ul class="nav navbar-nav navbar-right">
+                                <li class="dropdown">
+                                    <a aria-expanded="false" aria-haspopup="true" class="dropdown-toggle"
+                                       data-toggle="dropdown" href="#" role="button">
+                                        Über uns
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Unser Team
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Kontakt
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Datenschutz
+                                    </a>
+                                </li>
+                            </ul>
                         </div>
-                    </form>
-                </div>
+                        <!-- /.navbar-collapse -->
+                    </div>
+                    <!-- /.container-fluid -->
+                </nav>
             </div>
-            <div class="col-md-12" style="padding-top:35px;">
-                <div class="col-md-4 text-center" style="padding-top: 15px;">
-                    <h3>
-                                <span class="glyphicon glyphicon-edit">
-        </span>
-                    </h3>
-                    <h3>
-                        Flug auswählen und Eckdaten eintragen
-                    </h3>
-                </div>
-                <div class="col-md-4 text-center" style="padding-top:15px;">
-                    <h3>
+        </section>
+        <div class="container" style="padding-top:5px;">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <div class="booking-form" style="margin-bottom:30px;">
+                        <form>
+                            <div class="form-group">
+                                <div class="form-checkbox" id="rountrip_or_one_way">
+                                    <label for="roundtrip">
+                                        <input id="roundtrip" value="Hin- und Rückflug" name="flight-type" type="radio"/>
+                                        <span>
+               </span>
+                                        Hin- und Rückflug
+                                    </label>
+                                    <label for="one-way">
+                                        <input id="one-way" value="Nur Hinflug" name="flight-type" type="radio"/>
+                                        <span>
+               </span>
+                                        Nur Hinflug
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+               <span class="form-label">
+                   Abflug von
+               </span>
+                                        <input class="form-control" id="flight_from" placeholder="Stadt oder Flughafen" type="text"/>
+                                        <span class="form-control-feedback">
+                                            <i class="fas fa-plane-departure"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+               <span class="form-label">
+                Ankunft in
+               </span>
+                                        <input class="form-control" id="flight_to" placeholder="Stadt oder Flughafen" type="text"/>
+                                        <span class="form-control-feedback">
+                                            <i class="fas fa-plane-arrival"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+               <span class="form-label">
+                Abflugsdatum
+               </span>
+                                        <input class="form-control" required="" id="departure_date" placeholder="tt.mm.jjjj"/>
+                                        <span class="glyphicon glyphicon-calendar form-control-feedback" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+               <span class="form-label">
+                Rückflugsdatum
+               </span>
+                                        <input class="form-control" required="" id="return_flight_date" placeholder="tt.mm.jjjj"/>
+                                        <span class="glyphicon glyphicon-calendar form-control-feedback" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+               <span class="form-label">
+                Erwachsene (18+)
+               </span>
+                                        <select class="form-control" id="adults">
+                                            <option>
+                                                1
+                                            </option>
+                                            <option>
+                                                2
+                                            </option>
+                                            <option>
+                                                3
+                                            </option>
+                                        </select>
+                                        <span class="select-arrow">
+               </span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+               <span class="form-label">
+                Kinder (0-17)
+               </span>
+                                        <select class="form-control" id="children">
+                                            <option>
+                                                0
+                                            </option>
+                                            <option>
+                                                1
+                                            </option>
+                                            <option>
+                                                2
+                                            </option>
+                                        </select>
+                                        <span class="select-arrow">
+               </span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+               <span class="form-label">
+                Reiseklasse
+               </span>
+                                        <select class="form-control" id="travel_class">
+                                            <option>
+                                                Economy
+                                            </option>
+                                            <option>
+                                                Business
+                                            </option>
+                                            <option>
+                                                Erste Klasse
+                                            </option>
+                                        </select>
+                                        <span class="select-arrow">
+               </span>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+               <span class="form-label">
+                Rufnummer
+               </span>
+                                        <input class="form-control" placeholder="Ihre Rufnummer" type="text" id="phone"/>
+                                        <!--<p class="help-block">Tragen Sie Ihre Rufnummer ein und wir rufen Sie an</p>-->
+                                        <span class="form-control-feedback">
+                                            <i class="glyphicon glyphicon-earphone"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-btn">
+                                <button class="submit-btn" type="button" id="submit_request">
+                                    Anfrage versenden
+                                </button>
+                            </div>
 
-        <span class="glyphicon glyphicon-send">
-        </span>
-                    </h3>
-                    <h3>
-                        Anfrage versenden
-                    </h3>
-                </div>
-                <div class="col-md-4 text-center" style="padding-top: 15px;">
-                    <h3>
-                                <span class="glyphicon glyphicon-phone-alt">
-        </span>
-                    </h3>
-                    <h3>
-                        Warten Sie auf unseren Anruf :-)
-                    </h3>
+                            <div class="alert alert-success alert-dismissible" id="success_box" style="margin-top:15px;display:none;">
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                                            <p class="text-center">
+                               <span class="glyphicon glyphicon-thumbs-up" style="font-size:2.0em;"></span>
+                            </p>
+                                Ihre Anfrage wurde erfolgreich versendet. Sie werden in kürze von uns angerufen.
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <div class="container-fluid" style="background:white;padding-top:20px;margin-bottom:20px;">
+        <div class="container">
+        <div class="col-md-12">
+            <div class="col-md-4 text-center">
+                <h3>
+                    <span class="glyphicon glyphicon-edit"></span>
+                </h3>
+                <h3>
+                    Flug auswählen und Eckdaten eintragen
+                </h3>
+            </div>
+            <div class="col-md-4 text-center">
+                <h3>
+                    <span class="glyphicon glyphicon-send"></span>
+                </h3>
+                <h3>
+                    Anfrage versenden
+                </h3>
+            </div>
+            <div class="col-md-4 text-center">
+                <h3>
+                    <span class="glyphicon glyphicon-phone-alt"></span>
+                </h3>
+                <h3>
+                    Warten Sie auf unseren Anruf :-)
+                </h3>
+            </div>
+        </div>
+        </div>
+    </div>
+
 </div>
 <script src="https://code.jquery.com/jquery-1.12.4.js">
 </script>
