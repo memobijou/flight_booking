@@ -36,7 +36,6 @@
             border-color: transparent;
         }
     </style>
-    </link>
 </head>
 <body>
 <div class="section" id="booking" style="height:78vh;">
@@ -309,6 +308,10 @@
     });
     $_1(document).ready(function () {
         document.getElementById("submit_request").onclick = function (e) {
+            this.disabled = true;
+            this.style.opacity = "0.5";
+            let original_button_text = this.innerText;
+            this.innerText = "In Bearbeitung ... ";
             let flight_from = document.getElementById("flight_from").value;
             let flight_to = document.getElementById("flight_to").value;
             let amount_adults = document.getElementById("adults").options[document.getElementById("adults").selectedIndex].value;
@@ -323,6 +326,8 @@
             }
             let phone = document.getElementById("phone").value;
 
+            let submit_request_btn = this;
+
             $.ajax({
                 method: "POST",
                 url: "{% url 'request:mail' %}",
@@ -336,6 +341,9 @@
                 .done(function (msg) {
                     let success_box = document.getElementById("success_box");
                     success_box.style.display = "";
+                    submit_request_btn.removeAttribute("disabled");
+                    submit_request_btn.style.opacity = "0";
+                    submit_request_btn.innerText = original_button_text;
             });
 
         };
