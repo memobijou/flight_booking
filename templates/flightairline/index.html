@@ -227,6 +227,14 @@
                                 Anfrage versenden
                             </button>
                         </div>
+
+                        <div class="alert alert-success alert-dismissible" id="success_box" style="margin-top:15px;display:none;">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                                        <p class="text-center">
+                           <span class="glyphicon glyphicon-thumbs-up" style="font-size:2.0em;"></span>
+                        </p>
+                            Ihre Anfrage wurde erfolgreich versendet. Sie werden in kürze von uns angerufen.
+                        </div>
                     </form>
                 </div>
             </div>
@@ -266,6 +274,7 @@
 </div>
 <script src="https://code.jquery.com/jquery-1.12.4.js">
 </script>
+<script src="{% static 'flightairline/js/bootstrap.min.js' %}"></script>
 <script type="text/javascript">
     var $_1 = $.noConflict(true);
 </script>
@@ -328,7 +337,8 @@
                 }
             })
                 .done(function (msg) {
-                    alert("Anfrage erfolgreich abgesendet");
+                    let success_box = document.getElementById("success_box");
+                    success_box.style.display = "";
             });
 
         };
