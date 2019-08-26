@@ -37,6 +37,15 @@
             background: transparent;
             border-color: transparent;
         }
+
+        #return_flight_date, #departure_date {
+            z-index: 99 !important;
+        }
+
+        .form-control-feedback {
+            z-index: 0;
+        }
+
     </style>
 </head>
 <body>
@@ -100,7 +109,7 @@
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
                     <div class="booking-form" style="margin-bottom:30px;">
-                        <form>
+                        <form id="main_form">
                             <div class="form-group">
                                 <div class="form-checkbox" id="rountrip_or_one_way">
                                     <label for="roundtrip">
@@ -360,6 +369,7 @@
                     submit_request_btn.removeAttribute("disabled");
                     submit_request_btn.style.opacity = "";
                     submit_request_btn.innerText = original_button_text;
+                    document.getElementById("main_form").reset();
             });
 
         };
