@@ -135,11 +135,11 @@
                 }
             })
                 .done(function (data) {
-                    let success_box = document.getElementById("success_box");
-                    success_box.style.display = "";
                     apply_initial_form_state(submit_request_btn, original_button_text);
                     clear_error_and_success_fields();
                     document.getElementById("main_form").reset();
+                    let success_box = document.getElementById("success_box");
+                    success_box.style.display = "";
                 }).fail(function (data) {
 
                 apply_initial_form_state(submit_request_btn, original_button_text);
