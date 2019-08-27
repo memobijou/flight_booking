@@ -65,6 +65,15 @@
                     submit_request_btn.style.opacity = "";
                     submit_request_btn.innerText = original_button_text;
                     document.getElementById("main_form").reset();
+                    let form_groups = $("#main_form .form-group");
+                    form_groups.each(function(index){
+                        let form_group = $(this);
+                        let error_field_el = form_group.find(".error_msg");
+                        error_field_el.text("");
+                        form_group.attr("class", form_group.attr("class").replace(" has-error", ""));
+                        form_group.attr("class", form_group.attr("class").replace(" has-success", ""));
+                    });
+
                 }).fail(function (data) {
 
                 submit_request_btn.removeAttribute("disabled");
