@@ -35,9 +35,75 @@
             });
         };
 
+        let apply_initial_form_state = function(submit_request_btn, original_button_text){
+            let success_box = document.getElementById("success_box");
+            success_box.style.display = "none";
+            let error_box = document.getElementById("error_box");
+            error_box.style.display = "none";
+            let error_in_field_box = document.getElementById("error_in_field_box");
+            error_in_field_box.style.display = "none";
+            submit_request_btn.removeAttribute("disabled");
+            submit_request_btn.style.opacity = "";
+            submit_request_btn.innerText = original_button_text;
+        };
+
+        let validate_form = function(responseJSON){
+            let success_box = document.getElementById("success_box");
+            success_box.style.display = "none";
+            let error_box = document.getElementById("error_box");
+            error_box.style.display = "none";
+            let error_in_field_box = document.getElementById("error_in_field_box");
+            error_in_field_box.style.display = "";
+
+            let errors = responseJSON.errors;
+
+            for (let i = 0; i < Object.keys(errors).length; i++) {
+                let error_field_name = Object.keys(errors)[i];
+                let error_messages = errors[error_field_name];
+                let error_input = document.getElementById(error_field_name);
+
+                if(!error_input){
+                    continue;
+                }
+
+                let error_field = null;
+
+                if (error_input) {
+                    error_field = document.getElementById(error_field_name + "_error");
+                    error_field.innerText = error_messages;
+                    let form_group = $("#" + error_field.id).closest(".form-group");
+                    form_group.attr("class", form_group.attr("class").replace(" has-error", ""));
+                    form_group.attr("class", form_group.attr("class").replace(" has-success", ""))
+                    form_group.attr("class", form_group.attr("class") + " has-error");
+                }
+            }
+
+            let form_groups = $("#main_form .form-group");
+
+            form_groups.each(function(index){
+                let form_group = $(this);
+                let error_field_el = form_group.find(".error_msg");
+                let error_field_id = error_field_el.attr("id").replace("_error", "");
+                if(!Object.keys(errors).includes(error_field_id)){
+                    form_group.attr("class", form_group.attr("class").replace(" has-error", ""));
+                    form_group.attr("class", form_group.attr("class").replace(" has-success", ""));
+                    form_group.attr("class", form_group.attr("class") + " has-success");
+                    error_field_el.text("");
+                }
+
+                if(!error_field_el.text()){
+                    form_group.attr("class", form_group.attr("class").replace(" has-success", ""));
+                    form_group.attr("class", form_group.attr("class").replace(" has-error", ""));
+                    form_group.attr("class", form_group.attr("class") + " has-success");
+                }
+
+            });
+        };
 
         document.getElementById("flight_from").focus();
+
         document.getElementById("submit_request").onclick = function (e) {
+            // main()
             this.disabled = true;
             this.style.opacity = "0.5";
             let original_button_text = this.innerText;
@@ -71,28 +137,12 @@
                 .done(function (data) {
                     let success_box = document.getElementById("success_box");
                     success_box.style.display = "";
-                    let error_box = document.getElementById("error_box");
-                    error_box.style.display = "none";
-                    let error_in_field_box = document.getElementById("error_in_field_box");
-                    error_in_field_box.style.display = "none";
-                    submit_request_btn.removeAttribute("disabled");
-                    submit_request_btn.style.opacity = "";
-                    submit_request_btn.innerText = original_button_text;
-                    document.getElementById("main_form").reset();
-
+                    apply_initial_form_state(submit_request_btn, original_button_text);
                     clear_error_and_success_fields();
-
+                    document.getElementById("main_form").reset();
                 }).fail(function (data) {
 
-                submit_request_btn.removeAttribute("disabled");
-                submit_request_btn.style.opacity = "";
-                submit_request_btn.innerText = original_button_text;
-                let success_box = document.getElementById("success_box");
-                success_box.style.display = "none";
-                let error_box = document.getElementById("error_box");
-                error_box.style.display = "none";
-                let error_in_field_box = document.getElementById("error_in_field_box");
-                error_in_field_box.style.display = "none";
+                apply_initial_form_state(submit_request_btn, original_button_text);
 
                 let responseJSON = data.responseJSON;
 
@@ -104,54 +154,7 @@
 
 
                 if (responseJSON.message == "form_error") {
-                    let error_in_field_box = document.getElementById("error_in_field_box");
-                    error_in_field_box.style.display = "";
-                    let errors = responseJSON.errors;
-
-                    for (let i = 0; i < Object.keys(errors).length; i++) {
-                        let error_field_name = Object.keys(errors)[i];
-                        let error_messages = errors[error_field_name];
-                        let error_input = document.getElementById(error_field_name);
-
-                        if(!error_input){
-                            continue;
-                        }
-
-                        let error_field = null;
-
-                        if (error_input) {
-                            error_field = document.getElementById(error_field_name + "_error");
-                            error_field.innerText = error_messages;
-                            let form_group = $("#" + error_field.id).closest(".form-group");
-                            form_group.attr("class", form_group.attr("class").replace(" has-error", ""));
-                            form_group.attr("class", form_group.attr("class").replace(" has-success", ""))
-                            form_group.attr("class", form_group.attr("class") + " has-error");
-                        }
-                    }
-
-                    let form_groups = $("#main_form .form-group");
-
-                    form_groups.each(function(index){
-                        let form_group = $(this);
-                        let error_field_el = form_group.find(".error_msg");
-                        let error_field_id = error_field_el.attr("id").replace("_error", "");
-                        if(!Object.keys(errors).includes(error_field_id)){
-                            form_group.attr("class", form_group.attr("class").replace(" has-error", ""));
-                            form_group.attr("class", form_group.attr("class").replace(" has-success", ""));
-                            form_group.attr("class", form_group.attr("class") + " has-success");
-                            error_field_el.text("");
-                        }
-
-                        if(!error_field_el.text()){
-                            form_group.attr("class", form_group.attr("class").replace(" has-success", ""));
-                            form_group.attr("class", form_group.attr("class").replace(" has-error", ""));
-                            form_group.attr("class", form_group.attr("class") + " has-success");
-                        }
-
-                    });
-
-
-
+                    validate_form(responseJSON);
                 }else{
                     let error_box = document.getElementById("error_box");
                     error_box.style.display = "";
