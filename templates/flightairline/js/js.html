@@ -61,6 +61,8 @@
                     success_box.style.display = "";
                     let error_box = document.getElementById("error_box");
                     error_box.style.display = "none";
+                    let error_in_field_box = document.getElementById("error_in_field_box");
+                    error_in_field_box.style.display = "none";
                     submit_request_btn.removeAttribute("disabled");
                     submit_request_btn.style.opacity = "";
                     submit_request_btn.innerText = original_button_text;
@@ -82,11 +84,15 @@
                 let success_box = document.getElementById("success_box");
                 success_box.style.display = "none";
                 let error_box = document.getElementById("error_box");
-                error_box.style.display = "";
+                error_box.style.display = "none";
+                let error_in_field_box = document.getElementById("error_in_field_box");
+                error_in_field_box.style.display = "none";
 
                 let responseJSON = data.responseJSON;
 
                 if (responseJSON.message == "form_error") {
+                    let error_in_field_box = document.getElementById("error_in_field_box");
+                    error_in_field_box.style.display = "";
                     let errors = responseJSON.errors;
 
                     for (let i = 0; i < Object.keys(errors).length; i++) {
@@ -133,6 +139,9 @@
 
 
 
+                }else{
+                    let error_in_field_box = document.getElementById("error_in_field_box");
+                    error_in_field_box.style.display = "";
                 }
             });
 
