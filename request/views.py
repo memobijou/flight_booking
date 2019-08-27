@@ -5,6 +5,8 @@ from data import __file__
 from django.core.mail import EmailMessage
 from django.conf import settings
 
+from request.forms import RequestForm
+
 
 class SendMailView(View):
     def dispatch(self, request, *args, **kwargs):
@@ -13,33 +15,42 @@ class SendMailView(View):
             flight_to = self.request.POST.get("flight_to")
             departure_date = self.request.POST.get("departure_date")
             return_flight_date = self.request.POST.get("return_flight_date")
-            amount_adults = self.request.POST.get("amount_adults")
-            amount_children = self.request.POST.get("amount_children")
+            amount_adults = self.request.POST.get("adults")
+            amount_children = self.request.POST.get("children")
             travel_class = self.request.POST.get("travel_class")
             flight_type = self.request.POST.get("flight_type")
             phone = self.request.POST.get("phone")
 
-            body = "<strong>Abflug</strong><br/>"
-            body += f"&nbsp;&nbsp;&nbsp;&nbsp;<strong>Von: </strong>: {flight_from}<br/>"
-            body += f"&nbsp;&nbsp;&nbsp;&nbsp;<strong>Datum: </strong>: {departure_date}<br/>"
-            body += "<strong>Ankunft</strong><br/>"
-            body += f"&nbsp;&nbsp;&nbsp;&nbsp;<strong>In: </strong>: {flight_to}<br/>"
-            body += "<strong>Rückflug</strong><br/>"
-            body += f"&nbsp;&nbsp;&nbsp;&nbsp;<strong>Datum: </strong>: {return_flight_date}<br/>"
-            body += f"<strong>Anzahl Erwachsene:</strong> {amount_adults}<br/>"
-            body += f"<strong>Anzahl Kinder:</strong> {amount_children}<br/>"
-            body += f"<strong>Reiseklasse:</strong> {travel_class}<br/>"
-            body += f"<strong>{flight_type}</strong><br/>"
-            body += f"<strong>Rufnummer: </strong>{phone}<br/>"
-            email = EmailMessage(f"{flight_from} - {flight_to}", body, to=["mbijou@live.de", "osman_2008@hotmail.de"])
-            email.content_subtype = "html"
-            status = email.send()
-            if status == 1:
-                return JsonResponse(data={"message": "Email wurde erfolgreich abgesendet", "status": "SUCCESS"},
-                                    status=201, safe=False)
+            form = RequestForm(self.request.POST)
+
+            if form.is_valid() is True:
+                body = "<strong>Abflug</strong><br/>"
+                body += f"&nbsp;&nbsp;&nbsp;&nbsp;<strong>Von: </strong>: {flight_from}<br/>"
+                body += f"&nbsp;&nbsp;&nbsp;&nbsp;<strong>Datum: </strong>: {departure_date}<br/>"
+                body += "<strong>Ankunft</strong><br/>"
+                body += f"&nbsp;&nbsp;&nbsp;&nbsp;<strong>In: </strong>: {flight_to}<br/>"
+                body += "<strong>Rückflug</strong><br/>"
+                body += f"&nbsp;&nbsp;&nbsp;&nbsp;<strong>Datum: </strong>: {return_flight_date}<br/>"
+                body += f"<strong>Anzahl Erwachsene:</strong> {amount_adults}<br/>"
+                body += f"<strong>Anzahl Kinder:</strong> {amount_children}<br/>"
+                body += f"<strong>Reiseklasse:</strong> {travel_class}<br/>"
+                body += f"<strong>{flight_type}</strong><br/>"
+                body += f"<strong>Rufnummer: </strong>{phone}<br/>"
+                email = EmailMessage(f"{flight_from} - {flight_to}", body, to=["mbijou@live.de", "osman_2008@hotmail.de"])
+                email.content_subtype = "html"
+                status = email.send()
+                if status == 1:
+                    return JsonResponse(data={"message": "Email wurde erfolgreich abgesendet", "status": "SUCCESS"},
+                                        status=201, safe=False)
+                else:
+                    return JsonResponse(data={"message": "Email konnte nicht abgesendet werden", "status": "FAILURE"},
+                                        status=500, safe=False)
             else:
-                return JsonResponse(data={"message": "Email konnte nicht abgesendet werden", "status": "FAILURE"},
-                                    status=500, safe=False)
+                errors = {}
+                for e in form.errors:
+                    errors[e] = form.errors[e]
+                    print(f"{e} : {errors[e]}")
+                return JsonResponse(data={"message": "form_error", "errors": errors, "status": "FAILURE"}, status=400, safe=False)
 
 
 def airport_api_view(request):

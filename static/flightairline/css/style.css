@@ -59,6 +59,21 @@
 	transition: 0.2s all;
 }
 
+/* CUSTOM */
+.has-error input {
+	border: 1px solid #a94442 !important;
+}
+
+.has-error select {
+	border: 1px solid #a94442 !important;
+}
+
+/* CUSTOM */
+.has-success input, .has-success select {
+	border: 1px solid #3c763d !important;
+}
+
+
 .booking-form .form-control::-webkit-input-placeholder {
 	color: #dfe5e9;
 }

@@ -1,0 +1,132 @@
+<script>
+    $_1('head').append('<link rel="stylesheet" type="text/css" href="///code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">');
+    $_1('head').append('<link rel="stylesheet" type="text/css" href="flightairline//resources/demos/style.css">');
+    $_1(function () {
+        var airports = ["aa"];
+        $_1("#flight_from").autocomplete({
+            source: function (request, response) {
+                $.get("/airport/api", {q: request.term}, function (data) {
+                    response(data);
+                });
+            },
+        });
+        $_1("#flight_to").autocomplete({
+            source: function (request, response) {
+                $.get("/airport/api", {q: request.term}, function (data) {
+                    response(data);
+                });
+            },
+        });
+        $_1(function () {
+            $_1.datepicker.setDefaults($_1.datepicker.regional["de"]);
+            $_1("#departure_date").datepicker();
+            $_1("#return_flight_date").datepicker();
+        });
+    });
+    $_1(document).ready(function () {
+        document.getElementById("flight_from").focus();
+        document.getElementById("submit_request").onclick = function (e) {
+            this.disabled = true;
+            this.style.opacity = "0.5";
+            let original_button_text = this.innerText;
+            this.innerText = "In Bearbeitung ... ";
+            let flight_from = document.getElementById("flight_from").value;
+            let flight_to = document.getElementById("flight_to").value;
+            let amount_adults = document.getElementById("adults").options[document.getElementById("adults").selectedIndex].value;
+            let amount_children = document.getElementById("children").options[document.getElementById("children").selectedIndex].value;
+            let departure_date = document.getElementById("departure_date").value;
+            let return_flight_date = document.getElementById("return_flight_date").value;
+            let travel_class = document.getElementById("travel_class").options[document.getElementById("travel_class").selectedIndex].value;
+            let flight_type_selection = $_1('input[name="flight-type"]:checked');
+            let flight_type = "";
+            if (flight_type_selection.length > 0) {
+                flight_type = flight_type_selection.val();
+            }
+            let phone = document.getElementById("phone").value;
+
+            let submit_request_btn = this;
+
+            $.ajax({
+                method: "POST",
+                url: "{% url 'request:mail' %}",
+                data: {
+                    flight_from: flight_from, flight_to: flight_to, adults: amount_adults,
+                    children: amount_children, departure_date: departure_date,
+                    return_flight_date: return_flight_date, "csrfmiddlewaretoken": "{{ csrf_token }}",
+                    travel_class: travel_class, flight_type: flight_type, phone: phone
+                }
+            })
+                .done(function (data) {
+                    let success_box = document.getElementById("success_box");
+                    success_box.style.display = "";
+                    let error_box = document.getElementById("error_box");
+                    error_box.style.display = "none";
+                    submit_request_btn.removeAttribute("disabled");
+                    submit_request_btn.style.opacity = "";
+                    submit_request_btn.innerText = original_button_text;
+                    document.getElementById("main_form").reset();
+                }).fail(function (data) {
+
+                submit_request_btn.removeAttribute("disabled");
+                submit_request_btn.style.opacity = "";
+                submit_request_btn.innerText = original_button_text;
+                let success_box = document.getElementById("success_box");
+                success_box.style.display = "none";
+                let error_box = document.getElementById("error_box");
+                error_box.style.display = "";
+
+                let responseJSON = data.responseJSON;
+
+                if (responseJSON.message == "form_error") {
+                    let errors = responseJSON.errors;
+
+                    for (let i = 0; i < Object.keys(errors).length; i++) {
+                        let error_field_name = Object.keys(errors)[i];
+                        let error_messages = errors[error_field_name];
+                        let error_input = document.getElementById(error_field_name);
+
+                        if(!error_input){
+                            continue;
+                        }
+
+                        let error_field = null;
+
+                        if (error_input) {
+                            error_field = document.getElementById(error_field_name + "_error");
+                            error_field.innerText = error_messages;
+                            let form_group = $("#" + error_field.id).closest(".form-group");
+                            form_group.attr("class", form_group.attr("class").replace(" has-error", ""));
+                            form_group.attr("class", form_group.attr("class").replace(" has-success", ""))
+                            form_group.attr("class", form_group.attr("class") + " has-error");
+                        }
+                    }
+
+                    let form_groups = $("#main_form .form-group");
+
+                    form_groups.each(function(index){
+                        let form_group = $(this);
+                        let error_field_el = form_group.find(".error_msg");
+                        let error_field_id = error_field_el.attr("id").replace("_error", "");
+                        if(!Object.keys(errors).includes(error_field_id)){
+                            form_group.attr("class", form_group.attr("class").replace(" has-error", ""));
+                            form_group.attr("class", form_group.attr("class").replace(" has-success", ""));
+                            form_group.attr("class", form_group.attr("class") + " has-success");
+                            error_field_el.text("");
+                        }
+
+                        if(!error_field_el.text()){
+                            form_group.attr("class", form_group.attr("class").replace(" has-success", ""));
+                            form_group.attr("class", form_group.attr("class").replace(" has-error", ""));
+                            form_group.attr("class", form_group.attr("class") + " has-success");
+                        }
+
+                    });
+
+
+
+                }
+            });
+
+        };
+    });
+</script>
