@@ -24,6 +24,18 @@
         });
     });
     $_1(document).ready(function () {
+        let clear_error_and_success_fields = function(){
+            let form_groups = $("#main_form .form-group");
+            form_groups.each(function(index){
+                let form_group = $(this);
+                let error_field_el = form_group.find(".error_msg");
+                error_field_el.text("");
+                form_group.attr("class", form_group.attr("class").replace(" has-error", ""));
+                form_group.attr("class", form_group.attr("class").replace(" has-success", ""));
+            });
+        };
+
+
         document.getElementById("flight_from").focus();
         document.getElementById("submit_request").onclick = function (e) {
             this.disabled = true;
@@ -67,14 +79,8 @@
                     submit_request_btn.style.opacity = "";
                     submit_request_btn.innerText = original_button_text;
                     document.getElementById("main_form").reset();
-                    let form_groups = $("#main_form .form-group");
-                    form_groups.each(function(index){
-                        let form_group = $(this);
-                        let error_field_el = form_group.find(".error_msg");
-                        error_field_el.text("");
-                        form_group.attr("class", form_group.attr("class").replace(" has-error", ""));
-                        form_group.attr("class", form_group.attr("class").replace(" has-success", ""));
-                    });
+
+                    clear_error_and_success_fields();
 
                 }).fail(function (data) {
 
@@ -89,6 +95,13 @@
                 error_in_field_box.style.display = "none";
 
                 let responseJSON = data.responseJSON;
+
+                if(!responseJSON){
+                    let error_box = document.getElementById("error_box");
+                    error_box.style.display = "";
+                    clear_error_and_success_fields();
+                }
+
 
                 if (responseJSON.message == "form_error") {
                     let error_in_field_box = document.getElementById("error_in_field_box");
@@ -140,8 +153,9 @@
 
 
                 }else{
-                    let error_in_field_box = document.getElementById("error_in_field_box");
-                    error_in_field_box.style.display = "";
+                    let error_box = document.getElementById("error_box");
+                    error_box.style.display = "";
+                    clear_error_and_success_fields();
                 }
             });
 
