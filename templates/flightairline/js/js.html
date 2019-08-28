@@ -52,6 +52,7 @@
                 });
 
                 number_elements.on("keydown", function(e){
+                    last_correct_value = this.value.toString();
                     let key = event.keyCode || event.charCode;
                     if( key == 8 || key == 46 ){
                         allow_delete = true;
