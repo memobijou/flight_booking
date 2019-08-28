@@ -25,41 +25,41 @@
     });
     $_1(document).ready(function () {
             let allow_only_numbers_for_number_fields = function(){
+                let number_elements = $("input[type='number']");
 
-            let number_elements = $("input[type='number']");
+                let allow_delete = false;
+                let last_correct_value = "";
+                number_elements.on("input", function (e) {
+                    if(allow_delete){
+                        $(this).val("");
+                        allow_delete = false;
+                        last_correct_value = "";
+                        return;
+                    }
 
-            let allow_delete = false;
-            let last_correct_value = "";
-            number_elements.on("input", function (e) {
-                if(allow_delete){
-                    $(this).val("");
-                    allow_delete = false;
-                    last_correct_value = "";
-                    return;
-                }
-
-                if(this.value < 0){
-                    this.value = 0;
-                }
+                    if(this.value < 0){
+                        this.value = 0;
+                    }
 
 
-                if(!this.value){
-                    this.value = last_correct_value;
-                    $(this.parentElement).find(".error_msg").text("Bitte nur Ziffern von 0-9 eingeben");
-                }else{
-                    last_correct_value = this.value.toString();
-                    $(this.parentElement).find(".error_msg").text("");
-                }
-            });
+                    if(!this.value){
+                        this.value = last_correct_value;
+                        $(this.parentElement).find(".error_msg").text("Bitte nur Ziffern von 0-9 eingeben");
+                    }else{
+                        last_correct_value = this.value.toString();
+                        $(this.parentElement).find(".error_msg").text("");
+                    }
+                });
 
-            number_elements.on("keydown", function(e){
-                let key = event.keyCode || event.charCode;
-                if( key == 8 || key == 46 ){
-                    allow_delete = true;
-                }
-            });
+                number_elements.on("keydown", function(e){
+                    let key = event.keyCode || event.charCode;
+                    if( key == 8 || key == 46 ){
+                        allow_delete = true;
+                    }
+                });
         };
 
+        allow_only_numbers_for_number_fields();
 
 
         let clear_error_and_success_fields = function(){
