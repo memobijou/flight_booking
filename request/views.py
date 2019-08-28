@@ -21,6 +21,8 @@ class SendMailView(View):
             flight_type = self.request.POST.get("flight_type")
             phone = self.request.POST.get("phone")
 
+            print(f"jo: {amount_adults}")
+
             form = RequestForm(self.request.POST)
 
             if form.is_valid() is True:

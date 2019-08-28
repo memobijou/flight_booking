@@ -19,11 +19,49 @@
         });
         $_1(function () {
             $_1.datepicker.setDefaults($_1.datepicker.regional["de"]);
-            $_1("#departure_date").datepicker();
-            $_1("#return_flight_date").datepicker();
+            $_1("#departure_date").datepicker({minDate: 0});
+            $_1("#return_flight_date").datepicker({minDate: 0});
         });
     });
     $_1(document).ready(function () {
+            let allow_only_numbers_for_number_fields = function(){
+
+            let number_elements = $("input[type='number']");
+
+            let allow_delete = false;
+            let last_correct_value = "";
+            number_elements.on("input", function (e) {
+                if(allow_delete){
+                    $(this).val("");
+                    allow_delete = false;
+                    last_correct_value = "";
+                    return;
+                }
+
+                if(this.value < 0){
+                    this.value = 0;
+                }
+
+
+                if(!this.value){
+                    this.value = last_correct_value;
+                    $(this.parentElement).find(".error_msg").text("Bitte nur Ziffern von 0-9 eingeben");
+                }else{
+                    last_correct_value = this.value.toString();
+                    $(this.parentElement).find(".error_msg").text("");
+                }
+            });
+
+            number_elements.on("keydown", function(e){
+                let key = event.keyCode || event.charCode;
+                if( key == 8 || key == 46 ){
+                    allow_delete = true;
+                }
+            });
+        };
+
+
+
         let clear_error_and_success_fields = function(){
             let form_groups = $("#main_form .form-group");
             form_groups.each(function(index){
@@ -110,8 +148,8 @@
             this.innerText = "In Bearbeitung ... ";
             let flight_from = document.getElementById("flight_from").value;
             let flight_to = document.getElementById("flight_to").value;
-            let amount_adults = document.getElementById("adults").options[document.getElementById("adults").selectedIndex].value;
-            let amount_children = document.getElementById("children").options[document.getElementById("children").selectedIndex].value;
+            let amount_adults = document.getElementById("adults").value;
+            let amount_children = document.getElementById("children").value;
             let departure_date = document.getElementById("departure_date").value;
             let return_flight_date = document.getElementById("return_flight_date").value;
             let travel_class = document.getElementById("travel_class").options[document.getElementById("travel_class").selectedIndex].value;

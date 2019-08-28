@@ -47,6 +47,9 @@
         .form-control-feedback {
             z-index: 0;
         }
+
+
+
     </style>
 </head>
 
@@ -113,7 +116,7 @@
                                 <div class="form-group">
                                     <div class="form-checkbox" id="flight_type">
                                         <label for="roundtrip">
-                                            <input id="roundtrip" value="Hin- und Rückflug" name="flight_type" type="radio" />
+                                            <input id="roundtrip" value="Hin- und Rückflug" name="flight_type" type="radio" checked />
                                             <span>
                </span> Hin- und Rückflug
                                         </label>
@@ -180,20 +183,9 @@
                                             <span class="form-label">
                                         Erwachsene (18+)
                                        </span>
-                                            <select class="form-control" id="adults">
-                                                <option>
-                                                    1
-                                                </option>
-                                                <option>
-                                                    2
-                                                </option>
-                                                <option>
-                                                    3
-                                                </option>
-                                            </select>
-                                            <span class="select-arrow">
-               </span>
+                                            <input class="form-control" value="1" id="adults" type="number"/>
                                             <span class="text-danger error_msg" id="adults_error"></span>
+
                                         </div>
                                     </div>
                                     <div class="col-md-4">
@@ -201,18 +193,7 @@
                                             <span class="form-label">
                 Kinder (0-17)
                </span>
-                                            <select class="form-control" id="children">
-                                                <option>
-                                                    0
-                                                </option>
-                                                <option>
-                                                    1
-                                                </option>
-                                                <option>
-                                                    2
-                                                </option>
-                                            </select>
-                                            <span class="select-arrow"></span>
+                                            <input class="form-control" value="0" id="children" type="number"/>
                                             <span class="text-danger error_msg" id="children_error"></span>
                                         </div>
                                     </div>
