@@ -126,7 +126,7 @@
                </span> Nur Hinflug
                                         </label>
                                     </div>
-                                    <span class="text-danger error_msg" id="flight_type_error"></span>
+                                    <span class="text-danger error_msg" id="flight_type"></span>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
@@ -138,7 +138,7 @@
                                             <span class="form-control-feedback">
                                             <i class="fas fa-plane-departure"></i>
                                         </span>
-                                            <span class="text-danger error_msg" id="flight_from_error"></span>
+                                            {% include "flightairline/index/feedback_field.html" %}
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -150,7 +150,7 @@
                                             <span class="form-control-feedback">
                                             <i class="fas fa-plane-arrival"></i>
                                         </span>
-                                            <span class="text-danger error_msg" id="flight_to_error"></span>
+                                        {% include "flightairline/index/feedback_field.html" %}
                                         </div>
                                     </div>
                                 </div>
@@ -162,7 +162,7 @@
                </span>
                                             <input class="form-control" required="" id="departure_date" placeholder="tt.mm.jjjj" />
                                             <span class="glyphicon glyphicon-calendar form-control-feedback" aria-hidden="true"></span>
-                                            <span class="text-danger error_msg" id="departure_date_error"></span>
+                                            {% include "flightairline/index/feedback_field.html" %}
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -172,8 +172,7 @@
                </span>
                                             <input class="form-control" required="" id="return_flight_date" placeholder="tt.mm.jjjj" />
                                             <span class="glyphicon glyphicon-calendar form-control-feedback" aria-hidden="true"></span>
-                                            <span class="text-danger error_msg" id="return_flight_date_error"></span>
-                                            <!--   <span style="top:25px;" class="glyphicon glyphicon-remove form-control-feedback"></span> -->
+                                            {% include "flightairline/index/feedback_field.html" %}
                                         </div>
                                     </div>
                                 </div>
@@ -184,8 +183,7 @@
                                         Erwachsene (18+)
                                        </span>
                                             <input class="form-control" value="1" id="adults" type="number"/>
-                                            <span class="text-danger error_msg" id="adults_error"></span>
-
+                                            {% include "flightairline/index/feedback_field.html" %}
                                         </div>
                                     </div>
                                     <div class="col-md-4">
@@ -194,7 +192,9 @@
                 Kinder (0-17)
                </span>
                                             <input class="form-control" value="0" id="children" type="number"/>
-                                            <span class="text-danger error_msg" id="children_error"></span>
+                                            {% include "flightairline/index/feedback_field.html" %}
+
+
                                         </div>
                                     </div>
                                     <div class="col-md-4">
@@ -214,7 +214,8 @@
                                                 </option>
                                             </select>
                                             <span class="select-arrow"></span>
-                                            <span class="text-danger error_msg" id="travel_class_error"></span>
+                                            {% include "flightairline/index/feedback_field.html" %}
+
 
                                         </div>
                                     </div>
@@ -228,7 +229,7 @@
                                             <span class="form-control-feedback">
                                             <i class="glyphicon glyphicon-earphone"></i>
                                         </span>
-                                            <span class="text-danger error_msg" id="phone_error"></span>
+                                        {% include "flightairline/index/feedback_field.html" %}
                                         </div>
                                     </div>
                                 </div>

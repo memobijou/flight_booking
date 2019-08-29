@@ -8,3 +8,4 @@ gunicorn
 pycountry
 googletrans
 beautifulsoup4
+phonenumbers

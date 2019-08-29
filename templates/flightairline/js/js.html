@@ -29,6 +29,7 @@
 
                 let allow_delete = false;
                 let last_correct_value = "";
+
                 number_elements.on("input", function (e) {
                     if(allow_delete){
                         $(this).val("");
@@ -69,6 +70,8 @@
                 let form_group = $(this);
                 let error_field_el = form_group.find(".error_msg");
                 error_field_el.text("");
+                let success_field_el = form_group.find(".success_msg");
+                success_field_el.css("display", "none");
                 form_group.attr("class", form_group.attr("class").replace(" has-error", ""));
                 form_group.attr("class", form_group.attr("class").replace(" has-success", ""));
             });
@@ -86,11 +89,12 @@
             submit_request_btn.innerText = original_button_text;
         };
 
-        let validate_form = function(responseJSON){
-            let success_box = document.getElementById("success_box");
+        let validate_form = function(responseJSON, submit_request_btn, original_button_text){
+            /*let success_box = document.getElementById("success_box");
             success_box.style.display = "none";
             let error_box = document.getElementById("error_box");
-            error_box.style.display = "none";
+            error_box.style.display = "none"; */
+            apply_initial_form_state(submit_request_btn, original_button_text);
             let error_in_field_box = document.getElementById("error_in_field_box");
             error_in_field_box.style.display = "";
 
@@ -99,22 +103,18 @@
             for (let i = 0; i < Object.keys(errors).length; i++) {
                 let error_field_name = Object.keys(errors)[i];
                 let error_messages = errors[error_field_name];
-                let error_input = document.getElementById(error_field_name);
 
-                if(!error_input){
-                    continue;
-                }
+                let form_group = $("#" + error_field_name).closest(".form-group");
+                let error_field = form_group.find(".error_msg");
 
-                let error_field = null;
 
-                if (error_input) {
-                    error_field = document.getElementById(error_field_name + "_error");
-                    error_field.innerText = error_messages;
-                    let form_group = $("#" + error_field.id).closest(".form-group");
-                    form_group.attr("class", form_group.attr("class").replace(" has-error", ""));
-                    form_group.attr("class", form_group.attr("class").replace(" has-success", ""))
-                    form_group.attr("class", form_group.attr("class") + " has-error");
-                }
+                error_field.text(error_messages);
+
+                form_group.attr("class", form_group.attr("class").replace(" has-error", ""));
+                form_group.attr("class", form_group.attr("class").replace(" has-success", ""));
+                form_group.attr("class", form_group.attr("class") + " has-error");
+                form_group.find(".success_msg").css("display", "none");
+                form_group.find(".error_icon").css("display", "");
             }
 
             let form_groups = $("#main_form .form-group");
@@ -122,8 +122,15 @@
             form_groups.each(function(index){
                 let form_group = $(this);
                 let error_field_el = form_group.find(".error_msg");
-                let error_field_id = error_field_el.attr("id").replace("_error", "");
-                if(!Object.keys(errors).includes(error_field_id)){
+
+                //alert(Object.keys(errors) + " : " + error_field_el.attr("id"));
+
+                let input = form_group.find("input");
+                if(!input.attr("id")){
+                    input = form_group.find("select");
+                }
+
+                if(!Object.keys(errors).includes(input.attr("id"))){
                     form_group.attr("class", form_group.attr("class").replace(" has-error", ""));
                     form_group.attr("class", form_group.attr("class").replace(" has-success", ""));
                     form_group.attr("class", form_group.attr("class") + " has-success");
@@ -134,6 +141,10 @@
                     form_group.attr("class", form_group.attr("class").replace(" has-success", ""));
                     form_group.attr("class", form_group.attr("class").replace(" has-error", ""));
                     form_group.attr("class", form_group.attr("class") + " has-success");
+                    let success_field_el = form_group.find(".success_msg");
+                    form_group.find("error_icon").css("display", "none");
+                    success_field_el.css("display", "");
+
                 }
 
             });
@@ -188,12 +199,11 @@
                 if(!responseJSON){
                     let error_box = document.getElementById("error_box");
                     error_box.style.display = "";
-                    clear_error_and_success_fields();
                 }
 
 
                 if (responseJSON.message == "form_error") {
-                    validate_form(responseJSON);
+                    validate_form(responseJSON, submit_request_btn, original_button_text);
                 }else{
                     let error_box = document.getElementById("error_box");
                     error_box.style.display = "";
