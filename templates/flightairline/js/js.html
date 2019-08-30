@@ -212,5 +212,41 @@
             });
 
         };
+
+        let regExp = /^[0-9 ()+-]+$/; // ALLOWS ONLY NUMBERS AN + and - and ()
+
+        document.getElementById("phone").oninput = function(e){
+            //this.value = this.value.replace(/\D/g,'');
+            let phone_input = this;
+            $.ajax(
+                {
+                    method: "GET",
+                    url: "{% url 'validate_phone' %}",
+                    data: {phone: phone_input.value},
+                }
+            ).done(function (data) {
+                //let selection_start = phone_input.selectionStart;
+                phone_input.value = data.phone;
+
+                //phone_input.setSelectionRange(selection_start, selection_start);
+                document.getElementById("phone_country_code").className = "flag-icon flag-icon-" + data.country_code.toLowerCase().trim();
+            })
+        };
+
+
+        $( "#phone" ).on( "keydown", function( event ) {
+            let key = event.which || event.keyCode;
+
+            if( key == 8){
+                this.value = this.value.trimRight();
+            }
+
+            if(key == 46){
+                this.value = this.value.trimRight();
+            }
+        });
+
+
+
     });
 </script>

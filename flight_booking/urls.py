@@ -16,9 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView
+from flight_booking.views import phonenumber_validation_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', TemplateView.as_view(template_name="flightairline/index.html")),
-    path('airport/', include(('request.urls', "request"), namespace="request"))
+    path('airport/', include(('request.urls', "request"), namespace="request")),
+    path('phone/validation', phonenumber_validation_view, name="validate_phone"),
 ]
