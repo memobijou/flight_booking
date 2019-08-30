@@ -148,6 +148,25 @@
                 }
 
             });
+
+            // focus first error field
+             $("#main_form .form-group .error_msg").each(
+                 function (index) {
+                     if($(this).text()){
+
+                         let form_group = $(this).closest(".form-group");
+                         let input = form_group.find("input");
+                         if(!input.attr("id")){
+                            input = form_group.find("select");
+                         }
+
+                         input.focus();
+                         return false;
+                     }
+                 }
+
+             );
+
         };
 
         document.getElementById("flight_from").focus();
