@@ -222,7 +222,7 @@
                 }
 
 
-                if (responseJSON.message == "form_error") {
+                if (responseJSON && responseJSON.message == "form_error") {
                     validate_form(responseJSON, submit_request_btn, original_button_text);
                 }else{
                     let error_box = document.getElementById("error_box");
