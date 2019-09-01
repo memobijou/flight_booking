@@ -30,11 +30,11 @@ class RequestForm(forms.Form):
     def clean_phone(self):
         value = self.cleaned_data.get("phone")
 
-        allowed_chars = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "+", " "]
+        allowed_chars = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "+", " ", "-", "(", ")"]
         for char in value:
             if char not in allowed_chars:
                 self.add_error("phone",
-                               "Sie drüfen nur Ziffern 0-9 angegeben oder eine + für die internationale Vorwahl")
+                               "Sie dürfen nur Ziffern 0-9 angegeben oder eine + für die internationale Vorwahl")
                 return value
 
         if value.startswith("+"):

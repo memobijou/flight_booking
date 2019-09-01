@@ -4,11 +4,13 @@ from phonenumbers import COUNTRY_CODE_TO_REGION_CODE
 
 
 def phonenumber_validation_view(request):
-    phone_number = request.GET.get("phone", "")
-    country_code = "DE" # DEFAULT
+    phone_number = request.GET.get("phone", "").replace(" ", "")
+    country_code = "DE"  # DEFAULT
     for region_code, country_code_list in COUNTRY_CODE_TO_REGION_CODE.items():
-        if phone_number.startswith(f"+{region_code}"):
+        prefix = f"+{region_code}"
+        if phone_number.startswith(prefix):
             country_code = country_code_list[0]
+            break
     formater = phonenumbers.AsYouTypeFormatter(country_code)
     result = ""
     for digit in phone_number:
