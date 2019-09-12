@@ -1,0 +1,180 @@
+<div class="container" style="padding-top:5px;">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="booking-form" style="margin-bottom:30px;">
+                <form id="main_form">
+                    <div class="form-group">
+                        <div class="form-checkbox" id="flight_type">
+                            <label for="roundtrip">
+                                <input id="roundtrip" value="Hin- und Rückflug" name="flight_type" type="radio"
+                                       checked/>
+                                <span>
+               </span> Hin- und Rückflug
+                            </label>
+                            <label for="one-way">
+                                <input id="one-way" value="Nur Hinflug" name="flight_type" type="radio"/>
+                                <span>
+               </span> Nur Hinflug
+                            </label>
+                        </div>
+                        <span class="text-danger error_msg" id="flight_type"></span>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                            <span class="form-label">
+                   Abflug von
+               </span>
+                                <input class="form-control" id="flight_from" placeholder="Stadt oder Flughafen"
+                                       type="text"/>
+                                <span class="form-control-feedback">
+                                            <i class="fas fa-plane-departure"></i>
+                                        </span>
+                                {% include "flightairline/index/feedback_field.html" %}
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                            <span class="form-label">
+                Ankunft in
+               </span>
+                                <input class="form-control" id="flight_to" placeholder="Stadt oder Flughafen"
+                                       type="text"/>
+                                <span class="form-control-feedback">
+                                            <i class="fas fa-plane-arrival"></i>
+                                        </span>
+                                {% include "flightairline/index/feedback_field.html" %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                            <span class="form-label">
+                Abflugsdatum
+               </span>
+                                <input class="form-control" required="" id="departure_date" placeholder="tt.mm.jjjj"/>
+                                <span class="glyphicon glyphicon-calendar form-control-feedback"
+                                      aria-hidden="true"></span>
+                                {% include "flightairline/index/feedback_field.html" %}
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                            <span class="form-label">
+                Rückflugsdatum
+               </span>
+                                <input class="form-control" required="" id="return_flight_date"
+                                       placeholder="tt.mm.jjjj"/>
+                                <span class="glyphicon glyphicon-calendar form-control-feedback"
+                                      aria-hidden="true"></span>
+                                {% include "flightairline/index/feedback_field.html" %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                            <span class="form-label">
+                                        Erwachsene (18+)
+                                       </span>
+                                <input class="form-control" value="1" id="adults" type="number"/>
+                                {% include "flightairline/index/feedback_field.html" %}
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                            <span class="form-label">
+                Kinder (0-17)
+               </span>
+                                <input class="form-control" value="0" id="children" type="number"/>
+                                {% include "flightairline/index/feedback_field.html" %}
+
+
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                            <span class="form-label">
+                Reiseklasse
+               </span>
+                                <select class="form-control" id="travel_class">
+                                    <option>
+                                        Economy
+                                    </option>
+                                    <option>
+                                        Business
+                                    </option>
+                                    <option>
+                                        Erste Klasse
+                                    </option>
+                                </select>
+                                <span class="select-arrow"></span>
+                                {% include "flightairline/index/feedback_field.html" %}
+
+
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                            <span class="form-label">
+                Rufnummer
+               </span>
+                                <input class="form-control" placeholder="01525 557283 / +49 1525 557283" type="text"
+                                       id="phone"/>
+
+                                <!--<p class="help-block">Tragen Sie Ihre Rufnummer ein und wir rufen Sie an</p>-->
+                                <span class="form-control-feedback">
+                                            <i class="glyphicon glyphicon-earphone"></i>
+                                            <i class="flag-icon flag-icon-de" id="phone_country_code"
+                                               style="bottom:6px;"> </i>
+
+                                        </span>
+                                {% include "flightairline/index/feedback_field.html" %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-btn">
+                        <button class="submit-btn" type="button" id="submit_request">
+                            Anfrage versenden
+                        </button>
+                    </div>
+
+                    <div class="alert alert-success alert-dismissible text-center" id="success_box"
+                         style="margin-top:15px;display:none;">
+                        <!-- <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> -->
+                        <p class="text-center">
+                            <span class="far fa-grin-beam" style="font-size:2.0em;"></span>
+                        </p>
+                        Ihre Anfrage wurde erfolgreich versendet. Sie werden in kürze von uns angerufen.
+                    </div>
+
+
+                    <div class="alert alert-danger alert-dismissible text-center" id="error_box"
+                         style="margin-top:15px;display:none;">
+                        <!-- <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> -->
+                        <p class="text-center">
+                            <span class="far fa-frown" style="font-size:2.0em;"></span>
+                        </p>
+                        <p>Beim versenden der Anfrage ist ein Fehler aufgetreten.</p>
+                        <p><b style="font-weight:900;font-size:15pt;">Bitte versuchen Sie es später wieder oder wenden
+                            Sie sich an unser Kundenservice.</b></p>
+                    </div>
+
+                    <div class="alert alert-danger alert-dismissible text-center" id="error_in_field_box"
+                         style="margin-top:15px;display:none;">
+                        <!-- <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> -->
+                        <p class="text-center">
+                            <span class="far fa-frown" style="font-size:2.0em;"></span>
+                        </p>
+                        <p>Beim versenden der Anfrage ist ein Fehler aufgetreten.</p>
+                        <p><b style="font-weight:900;font-size:15pt;">Bitte korrigieren Sie die Fehler im Formular.</b>
+                        </p>
+                    </div>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

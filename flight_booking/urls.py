@@ -21,6 +21,7 @@ from flight_booking.views import phonenumber_validation_view
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', TemplateView.as_view(template_name="flightairline/index.html")),
+    path('coupon/', include(('coupon.urls', "coupon"), namespace="coupon")),
     path('airport/', include(('request.urls', "request"), namespace="request")),
     path('phone/validation', phonenumber_validation_view, name="validate_phone"),
 ]

@@ -1,0 +1,231 @@
+{% extends 'flightairline/base.html' %}
+
+{% block main_content %}
+    <div class="container" style="padding-top:5px;">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="booking-form" style="margin-bottom:30px;">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Gutschein auswählen
+                    </div>
+                    <div class="form-group" style="padding:0;margin:0;">
+                        <div class="panel-body">
+                             <label class="radio-inline"><input type="radio" name="coupon_amount" value="5">5€</label>
+                             <label class="radio-inline"><input type="radio" name="coupon_amount" value="10">10€</label>
+                             <label class="radio-inline"><input type="radio" name="coupon_amount" value="15">15€</label>
+                             <label class="radio-inline"><input type="radio" name="coupon_amount" value="25">25€</label>
+                             <label class="radio-inline"><input type="radio" name="coupon_amount" value="50">50€</label>
+                             {% include 'flightairline/form_snippets/feedback_field.html' %}
+                        </div>
+                    </div>
+                </div>
+                    <form method="POST" id="coupon_form">{% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                            <span class="form-label">
+                                        Kreditkartennummer
+                                       </span>
+                                    <input class="form-control" id="credit_card_number"/>
+                                    {% include 'flightairline/form_snippets/feedback_field.html' %}
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                            <span class="form-label">
+                CVV
+               </span>
+                                    <input class="form-control" id="cvv" type="number"/>
+                                    {% include 'flightairline/form_snippets/feedback_field.html' %}
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    Gültigkeitsdatum
+                                </div>
+                                <div class="panel-body">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                                    <span class="form-label">
+                        Monat
+                       </span>
+                                            <select class="form-control" id="month">
+                                                <option value="">------</option>
+                                                {% for month in months_dropdown %}
+                                                    <option>
+                                                        {{ month }}
+                                                    </option>
+                                                {% endfor %}
+                                            </select>
+                                            <span class="select-arrow"></span>
+                                            {% include 'flightairline/form_snippets/feedback_field.html' %}
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-8">
+                                <div class="form-group">
+                                            <span class="form-label">
+                Jahr
+               </span>
+                                    <select class="form-control" id="year">
+                                        <option value="">------</option>
+                                        {% for year in years_dropdown %}
+                                            <option>
+                                                {{ year }}
+                                            </option>
+                                        {% endfor %}
+                                    </select>
+                                    <span class="select-arrow"></span>
+                                   {% include 'flightairline/form_snippets/feedback_field.html' %}
+
+                                </div>
+                            </div>
+                                </div>
+                            </div>
+                            </div>
+
+
+                        </div>
+
+                        <div class="form-btn">
+                            <button class="submit-btn" type="submit" id="submit_request">
+                                Bezahlen
+                            </button>
+                        </div>
+
+                        {% include 'flightairline/form_snippets/success_box.html' %}
+                        {% include 'flightairline/form_snippets/error_box.html' %}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script>
+        Stripe.setPublishableKey("{{ STRIPE_PUBLISHABLE }}");
+
+        $_1("#coupon_form").submit(function(e){
+            e.preventDefault();
+            let form = this;
+            let coupon_amount = $_1("input[name='coupon_amount']:checked").val();
+
+            let exp_month = $_1("#month").find(":selected").val();
+            let exp_year = $_1("#year").find(":selected").val();
+
+            let card = {
+              number: $_1("#credit_card_number").val(),
+              cvc: $_1("#cvv").val(),
+              expMonth: exp_month,
+              expYear: exp_year
+            };
+
+            let credit_card_token = "";
+
+            let stripe_form_error = false;
+
+            let required_inputs = ["credit_card_number", "cvv"];
+            let required_selects = ["month", "year"];
+
+            $_1(required_inputs).each(function(index, id){
+                if(!$_1("#" + id).val()){
+                    stripe_form_error = true;
+                    $_1("#" + id).closest(".form-group").find(".error_msg").text("Dieses Feld ist erforderlich");
+                }else{
+                    $_1("#" + id).closest(".form-group").find(".error_msg").text("");
+                }
+            });
+
+
+            $_1(required_selects).each(function(index, id){
+                if(!$_1("#" + id).find(":selected").val()){
+                    stripe_form_error = true;
+                    $_1("#" + id).closest(".form-group").find(".error_msg").text("Dieses Feld ist erforderlich");
+                }else{
+                    $_1("#" + id).closest(".form-group").find(".error_msg").text("");
+                }
+            });
+
+            Stripe.createToken(card, function(status, response){
+                if(status == 200){
+                    credit_card_token = response.id;
+                    peform_stripe_payment(credit_card_token, form, coupon_amount);
+                    $_1(".error_msg").text("");
+                }else{
+                    if(response.error.param === "number"){
+                        if(response.error.code === "incorrect_number"){
+                            $_1("#credit_card_number").closest(".form-group").find(".error_msg").text("Ungültige Nummer");
+                        }
+                    }
+
+                    if(response.error.param === "cvc"){
+                        if(response.error.code === "invalid_cvc"){
+                            $_1("#cvv").closest(".form-group").find(".error_msg").text("Ungültiger Sicherheitscode");
+                        }
+                    }
+
+                    if(response.error.param === "exp_month"){
+                        if(exp_month){
+                            if(response.error.code === "invalid_number" || response.error.code === "invalid_expiry_month"){
+                                $_1("#month").closest(".form-group").find(".error_msg").text("Ungültiger Monat");
+                            }
+                        }
+                    }
+
+                    if(response.error.param === "exp_year"){
+                        if(exp_year){
+                            if(response.error.code === "invalid_number" || response.error.code === "invalid_expiry_year"){
+                                $_1("#year").closest(".form-group").find(".error_msg").text("Ungültigers Jahr");
+                            }
+                        }
+                    }
+
+
+                    $_1("#success_box").hide();
+                    $_1("#error_box").show();
+                }
+            });
+        });
+
+        let peform_stripe_payment = function(credit_card_token, form, coupon_amount){
+            $_1.ajax({
+                method: "POST",
+                url: "{% url 'coupon:payment' %}",
+                data: {
+                   "csrfmiddlewaretoken": "{{ csrf_token }}", "stripe_token": credit_card_token,
+                    "coupon_amount": coupon_amount
+                }
+             })
+            .done(function (data) {
+                $_1("#success_box_text").html("");
+                $_1("#success_box_text").append(data.message);
+                $_1("#success_box_text").append("<p>Ihr Gutscheincode: " +  "<b style='font-size:25px;'>" + data.coupon + "</b>" + "</p>");
+                $_1("#error_box").hide();
+                $_1("#success_box").show();
+                $_1(".error_msg").text("");
+                $_1("input:radio").prop("checked", false);
+                form.reset();
+            }).fail(function (data) {
+
+                if(JSON.parse(data.responseText).message == "form_error"){
+                    $_1.each(JSON.parse(data.responseText).errors, function(key, value){
+                        $_1("input[name=" + key +"]").closest(".form-group").find(".error_msg").text(value);
+                    });
+                }
+                $_1("#error_box_text").text(data.message);
+                $_1("#success_box").hide();
+                $_1("#error_box").show();
+            });
+        };
+
+    </script>
+{% endblock %}
+
+
+{% block content %}
+    {% include 'flightairline/coupon/instruction_row.html' %}
+{% endblock %}

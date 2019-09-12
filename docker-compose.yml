@@ -10,6 +10,8 @@ services:
     environment:
       - public_ip=0.0.0.0
       - firebase_token=<dein token hier>
+      - STRIPE_PUBLISHABLE=pk_test_pRSVxsaljhAOQchkRU3ozuoB00U8fgdsgv
+      - STRIPE_SECRET=sk_test_QSiA9X5FLDqNMjfQAvPNJ3l200LuYoigwW
     command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
     volumes:
       - .:/flight_booking

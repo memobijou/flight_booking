@@ -39,7 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'request',
-    'data'
+    'data',
+    'coupon',
+    'stripe',
 ]
 
 MIDDLEWARE = [
@@ -157,3 +159,9 @@ EMAIL_PORT = 587
 if os.environ.get("EMAIL_HOST_USER"):
     _, mail_domain = os.environ.get("EMAIL_HOST_USER").split("@")
     DEFAULT_FROM_EMAIL = "no-reply" + "@" + mail_domain
+
+
+# STRIPE
+
+STRIPE_PUBLISHABLE = os.environ.get("STRIPE_PUBLISHABLE")
+STRIPE_SECRET = os.environ.get("STRIPE_SECRET")
