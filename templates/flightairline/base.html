@@ -77,7 +77,7 @@
                                     <span class="icon-bar">
              </span>
                                 </button>
-                                <a class="navbar-brand text-dark" href="#" style="font-size:35px;color:#292b2c;">
+                                <a class="navbar-brand text-dark" href="{% url 'main' %}" style="font-size:35px;color:#292b2c;">
                                 Flybookers
                             </a>
                             </div>
@@ -102,6 +102,11 @@
                                     <li>
                                         <a href="#">
                                         Datenschutz
+                                    </a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'coupon:coupon' %}">
+                                        Gutscheine <span class="glyphicon glyphicon-tags"></span>
                                     </a>
                                     </li>
                                 </ul>

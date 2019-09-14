@@ -1,6 +1,27 @@
 {% extends 'flightairline/base.html' %}
 
 {% block main_content %}
+    <style>
+        .icons8-mastercard {
+            display: inline-block;
+            width: 48px;
+            height: 48px;
+            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjBweCIgeT0iMHB4Igp3aWR0aD0iNDgiIGhlaWdodD0iNDgiCnZpZXdCb3g9IjAgMCA0OCA0OCIKc3R5bGU9IiBmaWxsOiMwMDAwMDA7Ij48cGF0aCBmaWxsPSIjM0Y1MUI1IiBkPSJNNDUsMzVjMCwyLjIwOS0xLjc5MSw0LTQsNEg3Yy0yLjIwOSwwLTQtMS43OTEtNC00VjEzYzAtMi4yMDksMS43OTEtNCw0LTRoMzRjMi4yMDksMCw0LDEuNzkxLDQsNFYzNXoiPjwvcGF0aD48cGF0aCBmaWxsPSIjRkZDMTA3IiBkPSJNMzAgMTRBMTAgMTAgMCAxIDAgMzAgMzRBMTAgMTAgMCAxIDAgMzAgMTRaIj48L3BhdGg+PHBhdGggZmlsbD0iI0ZGM0QwMCIgZD0iTTIyLjAxNCwzMGMtMC40NjQtMC42MTctMC44NjMtMS4yODQtMS4xNzYtMmg1LjMyNWMwLjI3OC0wLjYzNiwwLjQ5Ni0xLjMwNCwwLjYzNy0yaC02LjU5OEMyMC4wNywyNS4zNTQsMjAsMjQuNjg2LDIwLDI0aDdjMC0wLjY4Ni0wLjA3LTEuMzU0LTAuMjAxLTJoLTYuNTk4YzAuMTQyLTAuNjk2LDAuMzU5LTEuMzY0LDAuNjM3LTJoNS4zMjVjLTAuMzEzLTAuNzE2LTAuNzExLTEuMzgzLTEuMTc2LTJoLTIuOTczYzAuNDM3LTAuNTgsMC45My0xLjEyMiwxLjQ4MS0xLjU5NUMyMS43NDcsMTQuOTA5LDE5LjQ4MSwxNCwxNywxNGMtNS41MjMsMC0xMCw0LjQ3Ny0xMCwxMHM0LjQ3NywxMCwxMCwxMGMzLjI2OSwwLDYuMTYyLTEuNTc1LDcuOTg2LTRIMjIuMDE0eiI+PC9wYXRoPjwvc3ZnPg==') 50% 50% no-repeat;
+            background-size: 100%;
+        }
+        .icons8-visa {
+            display: inline-block;
+            width: 48px;
+            height: 48px;
+            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjBweCIgeT0iMHB4Igp3aWR0aD0iNDgiIGhlaWdodD0iNDgiCnZpZXdCb3g9IjAgMCA0OCA0OCIKc3R5bGU9IiBmaWxsOiMwMDAwMDA7Ij48cGF0aCBmaWxsPSIjMTU2NUMwIiBkPSJNNDUsMzVjMCwyLjIwOS0xLjc5MSw0LTQsNEg3Yy0yLjIwOSwwLTQtMS43OTEtNC00VjEzYzAtMi4yMDksMS43OTEtNCw0LTRoMzRjMi4yMDksMCw0LDEuNzkxLDQsNFYzNXoiPjwvcGF0aD48cGF0aCBmaWxsPSIjRkZGIiBkPSJNMTUuMTg2IDE5bC0yLjYyNiA3LjgzMmMwIDAtLjY2Ny0zLjMxMy0uNzMzLTMuNzI5LTEuNDk1LTMuNDExLTMuNzAxLTMuMjIxLTMuNzAxLTMuMjIxTDEwLjcyNiAzMHYtLjAwMmgzLjE2MUwxOC4yNTggMTlIMTUuMTg2ek0xNy42ODkgMzBMMjAuNTYgMzAgMjIuMjk2IDE5IDE5LjM4OSAxOXpNMzguMDA4IDE5aC0zLjAyMWwtNC43MSAxMWgyLjg1MmwuNTg4LTEuNTcxaDMuNTk2TDM3LjYxOSAzMGgyLjYxM0wzOC4wMDggMTl6TTM0LjUxMyAyNi4zMjhsMS41NjMtNC4xNTcuODE4IDQuMTU3SDM0LjUxM3pNMjYuMzY5IDIyLjIwNmMwLS42MDYuNDk4LTEuMDU3IDEuOTI2LTEuMDU3LjkyOCAwIDEuOTkxLjY3NCAxLjk5MS42NzRsLjQ2Ni0yLjMwOWMwIDAtMS4zNTgtLjUxNS0yLjY5MS0uNTE1LTMuMDE5IDAtNC41NzYgMS40NDQtNC41NzYgMy4yNzIgMCAzLjMwNiAzLjk3OSAyLjg1MyAzLjk3OSA0LjU1MSAwIC4yOTEtLjIzMS45NjQtMS44ODguOTY0LTEuNjYyIDAtMi43NTktLjYwOS0yLjc1OS0uNjA5bC0uNDk1IDIuMjE2YzAgMCAxLjA2My42MDYgMy4xMTcuNjA2IDIuMDU5IDAgNC45MTUtMS41NCA0LjkxNS0zLjc1MkMzMC4zNTQgMjMuNTg2IDI2LjM2OSAyMy4zOTQgMjYuMzY5IDIyLjIwNnoiPjwvcGF0aD48cGF0aCBmaWxsPSIjRkZDMTA3IiBkPSJNMTIuMjEyLDI0Ljk0NWwtMC45NjYtNC43NDhjMCwwLTAuNDM3LTEuMDI5LTEuNTczLTEuMDI5Yy0xLjEzNiwwLTQuNDQsMC00LjQ0LDBTMTAuODk0LDIwLjg0LDEyLjIxMiwyNC45NDV6Ij48L3BhdGg+PC9zdmc+') 50% 50% no-repeat;
+            background-size: 100%;
+        }
+
+        .radios > span {
+            white-space: nowrap;
+            padding-right:10px;
+        }
+    </style>
     <div class="container" style="padding-top:5px;">
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
@@ -11,11 +32,38 @@
                     </div>
                     <div class="form-group" style="padding:0;margin:0;">
                         <div class="panel-body">
-                             <label class="radio-inline"><input type="radio" name="coupon_amount" value="5">5€</label>
-                             <label class="radio-inline"><input type="radio" name="coupon_amount" value="10">10€</label>
-                             <label class="radio-inline"><input type="radio" name="coupon_amount" value="15">15€</label>
-                             <label class="radio-inline"><input type="radio" name="coupon_amount" value="25">25€</label>
-                             <label class="radio-inline"><input type="radio" name="coupon_amount" value="50">50€</label>
+                             <div class="radios">
+                                 <span>
+                                     <label class="radio-inline"><input type="radio" name="coupon_amount" value="100">100€</label>
+                                 </span>
+                                 <span>
+                                     <label class="radio-inline"><input type="radio" name="coupon_amount" value="150">150€</label>
+                                 </span>
+                                 <span>
+                                     <label class="radio-inline"><input type="radio" name="coupon_amount" value="150">150€</label>
+                                 </span>
+                                 <span>
+                                     <label class="radio-inline"><input type="radio" name="coupon_amount" value="200">200€</label>
+                                 </span>
+                                 <span>
+                                     <label class="radio-inline"><input type="radio" name="coupon_amount" value="250">250€</label>
+                                 </span>
+                                 <span>
+                                     <label class="radio-inline"><input type="radio" name="coupon_amount" value="300">300€</label>
+                                 </span>
+                                 <span>
+                                     <label class="radio-inline"><input type="radio" name="coupon_amount" value="350">350€</label>
+                                 </span>
+                                 <span>
+                                     <label class="radio-inline"><input type="radio" name="coupon_amount" value="400">400€</label>
+                                 </span>
+                                 <span>
+                                     <label class="radio-inline"><input type="radio" name="coupon_amount" value="450">450€</label>
+                                 </span>
+                                 <span>
+                                    <label class="radio-inline"><input type="radio" name="coupon_amount" value="500">500€</label>
+                                 </span>
+                             </div>
                              {% include 'flightairline/form_snippets/feedback_field.html' %}
                         </div>
                     </div>
@@ -28,7 +76,13 @@
                                         Kreditkartennummer
                                        </span>
                                     <input class="form-control" id="credit_card_number"/>
+                                    <span class="form-control-feedback">
+                                        <br/>
+                                        <i class="icons8-mastercard" id="mastercard_icon" style="height:24px;width:24px;top:65px;display:none;"></i>
+                                        <i class="icons8-visa" id="visa_icon" style="height:24px;width:24px;top:65px;display:none;"></i>
+                                    </span>
                                     {% include 'flightairline/form_snippets/feedback_field.html' %}
+
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -109,8 +163,41 @@
     <script>
         Stripe.setPublishableKey("{{ STRIPE_PUBLISHABLE }}");
 
+        let stripe_error_messages_german = {
+          "incorrect_number": "Die Kartennummer ist falsch.",
+          "invalid_number": "Die Kartennummer ist keine gültige Kreditkartennummer.",
+          "invalid_expiry_month": "Der Monat des Ablaufdatums ist ungültig.",
+          "invalid_expiry_year": "Das Jahr des Ablaufdatums ist ungültig.",
+          "invalid_cvc": "Der Sicherheitscode ist ungültig.",
+          "expired_card": "Die Karte ist abgelaufen.",
+          "incorrect_cvc": "Der Sicherheitscode ist falsch.",
+          "incorrect_zip": "Die Postleitzahl ist ungültig.",
+          "card_declined": "Die Karte wurde abgelehnt.",
+          "missing": "Es gibt keine Karte von der abgebucht wird.",
+          "processing_error": "Ein Fehler ist aufgetreten bei der Bearbeitung der Karteninformationen.",
+          "rate_limit": "Es ist ein Fehler aufgetreten bei der API-Anfrage. Bitte lassen Sie uns wissen wenn dieses Problem konstant vorkommt."
+        };
+
+        let submit_btn = $_1("#submit_request");
+        let original_submit_btn_text = submit_btn.text();
+
+
+        let set_originial_button_state = function(){
+            submit_btn.removeProp("disabled");
+            submit_btn.css("opacity", "");
+            submit_btn.text(original_submit_btn_text);
+
+        };
+
+
         $_1("#coupon_form").submit(function(e){
+
+
             e.preventDefault();
+            submit_btn.prop("disabled", true);
+            submit_btn.css("opacity", "0.5");
+            submit_btn.text("In Bearbeitung ... ");
+
             let form = this;
             let coupon_amount = $_1("input[name='coupon_amount']:checked").val();
 
@@ -131,12 +218,24 @@
             let required_inputs = ["credit_card_number", "cvv"];
             let required_selects = ["month", "year"];
 
+            if(!coupon_amount){
+                error_field_state($_1("input[name='coupon_amount']"), "Dieses Feld ist erforderlich");
+            }else{
+                success_field_state($_1("input[name='coupon_amount']"));
+            }
+
             $_1(required_inputs).each(function(index, id){
                 if(!$_1("#" + id).val()){
                     stripe_form_error = true;
-                    $_1("#" + id).closest(".form-group").find(".error_msg").text("Dieses Feld ist erforderlich");
+                    error_field_state($_1("#" + id), "Dieses Feld ist erforderlich");
                 }else{
-                    $_1("#" + id).closest(".form-group").find(".error_msg").text("");
+                    if(id === "credit_card_number"){
+                       if($_1("#" + id).val().length < 14){
+                           return; // continue
+                       }
+                    }
+
+                    success_field_state($_1("#" + id));
                 }
             });
 
@@ -144,51 +243,50 @@
             $_1(required_selects).each(function(index, id){
                 if(!$_1("#" + id).find(":selected").val()){
                     stripe_form_error = true;
-                    $_1("#" + id).closest(".form-group").find(".error_msg").text("Dieses Feld ist erforderlich");
+                    error_field_state($_1("#" + id), "Dieses Feld ist erforderlich");
                 }else{
-                    $_1("#" + id).closest(".form-group").find(".error_msg").text("");
+                    success_field_state($_1("#" + id));
                 }
             });
 
-            Stripe.createToken(card, function(status, response){
-                if(status == 200){
+
+           Stripe.createToken(card, function(status, response){
+                if(status === 200){
                     credit_card_token = response.id;
                     peform_stripe_payment(credit_card_token, form, coupon_amount);
                     $_1(".error_msg").text("");
                 }else{
                     if(response.error.param === "number"){
-                        if(response.error.code === "incorrect_number"){
-                            $_1("#credit_card_number").closest(".form-group").find(".error_msg").text("Ungültige Nummer");
+                        if($_1("#credit_card_number").val()){
+                            error_field_state($_1("#credit_card_number"), stripe_error_messages_german[response.error.code]);
                         }
                     }
 
                     if(response.error.param === "cvc"){
-                        if(response.error.code === "invalid_cvc"){
-                            $_1("#cvv").closest(".form-group").find(".error_msg").text("Ungültiger Sicherheitscode");
+                        if($_1("#cvv").val()){
+                            error_field_state($_1("#cvv"), stripe_error_messages_german[response.error.code]);
                         }
                     }
 
                     if(response.error.param === "exp_month"){
-                        if(exp_month){
-                            if(response.error.code === "invalid_number" || response.error.code === "invalid_expiry_month"){
-                                $_1("#month").closest(".form-group").find(".error_msg").text("Ungültiger Monat");
-                            }
+                        if($_1("#month").val()){
+                            error_field_state($_1("#month"), stripe_error_messages_german[response.error.code]);
                         }
                     }
 
                     if(response.error.param === "exp_year"){
-                        if(exp_year){
-                            if(response.error.code === "invalid_number" || response.error.code === "invalid_expiry_year"){
-                                $_1("#year").closest(".form-group").find(".error_msg").text("Ungültigers Jahr");
-                            }
+                        if($_1("#year").val()){
+                            error_field_state($_1("#year"), stripe_error_messages_german[response.error.code]);
                         }
                     }
 
 
                     $_1("#success_box").hide();
                     $_1("#error_box").show();
+                    set_originial_button_state();
                 }
-            });
+          });
+
         });
 
         let peform_stripe_payment = function(credit_card_token, form, coupon_amount){
@@ -209,18 +307,151 @@
                 $_1(".error_msg").text("");
                 $_1("input:radio").prop("checked", false);
                 form.reset();
+                let form_group = $_1(".form-group");
+                let error_field = form_group.find(".error_msg");
+                error_field.text("");
+
+                form_group.attr("class", form_group.attr("class").replace(" has-error", ""));
+                form_group.attr("class", form_group.attr("class").replace(" has-success", ""));
+                form_group.find(".success_msg").css("display", "none");
+                form_group.find(".error_icon").css("display", "none");
+                set_originial_button_state();
+                $_1("#visa_icon").hide();
+                $_1("#mastercard_icon").hide();
+
             }).fail(function (data) {
 
                 if(JSON.parse(data.responseText).message == "form_error"){
                     $_1.each(JSON.parse(data.responseText).errors, function(key, value){
-                        $_1("input[name=" + key +"]").closest(".form-group").find(".error_msg").text(value);
+                        //$_1("input[name=" + key +"]").closest(".form-group").find(".error_msg").text(value);
+                        error_field_state($_1("input[name=" + key +"]"), value);
                     });
                 }
                 $_1("#error_box_text").text(data.message);
                 $_1("#success_box").hide();
                 $_1("#error_box").show();
+                set_originial_button_state();
             });
         };
+
+
+        let initial_field_state = function(element){
+            let form_group = $_1(element).closest(".form-group");
+            let error_field = form_group.find(".error_msg");
+            error_field.text("");
+
+            form_group.attr("class", form_group.attr("class").replace(" has-error", ""));
+            form_group.attr("class", form_group.attr("class").replace(" has-success", ""));
+            form_group.find(".success_msg").css("display", "none");
+            form_group.find(".error_icon").css("display", "none");
+
+        };
+
+
+        let success_field_state = function(element){
+            let form_group = $_1(element).closest(".form-group");
+            initial_field_state(element);
+
+            form_group.attr("class",form_group.attr("class") + " has-success");
+            form_group.find(".success_msg").css("display", "");
+        };
+
+        let error_field_state = function(element, error_msg){
+            let form_group = $_1(element).closest(".form-group");
+            let error_field = form_group.find(".error_msg");
+
+            initial_field_state(element);
+
+            error_field.text(error_msg);
+            form_group.attr("class",form_group.attr("class") + " has-error");
+        };
+
+
+        let form_validation = function(){
+            $_1("#credit_card_number").on("input", function (e) {
+
+                if($_1(this).val().startsWith(4)){
+                    $_1("#mastercard_icon").hide();
+                    $_1("#visa_icon").show();
+                }else if($_1(this).val().startsWith(5)){
+                    $_1("#visa_icon").hide();
+                    $_1("#mastercard_icon").show();
+                }else{
+                    $_1("#visa_icon").hide();
+                    $_1("#mastercard_icon").hide();
+                }
+
+                if($_1(this).val().length < 14){
+                    initial_field_state(this);
+                    return;
+                }
+
+                let is_valid = validate_credit_card_number($_1(this).val());
+
+                if(is_valid){
+                    success_field_state(this);
+
+                }else{
+                    error_field_state(this, "Ungültige Kreditkartennummer")
+                    // ERROR
+                }
+
+            })
+        };
+
+
+
+        let validate_credit_card_number = function(credit_card_number){
+            if(Math.floor(credit_card_number) == credit_card_number && (credit_card_number+"").match(/^\d+$/) ){
+
+                let reverse_credit_card_number = credit_card_number.split("").reverse().join("");
+                let x = "";
+                for(let i=0; i<reverse_credit_card_number.length; i++){
+                    if(i%2>0){
+                        let t = reverse_credit_card_number[i];
+                        x = x + (t*2).toString();
+                    }
+                }
+
+                let sum_x = 0;
+
+                for(let i=0; i<x.length;i++){
+                    sum_x = sum_x + parseInt(x[i]);
+                }
+
+
+                let y = "";
+                for(let i=0; i<reverse_credit_card_number.length; i++){
+                    if(i%2===0){
+                        let t = reverse_credit_card_number[i];
+                        y = y + (t).toString();
+                    }
+                }
+
+                let sum_y = 0;
+
+                for(let i=0; i<y.length;i++){
+                    sum_y = sum_y + parseInt(y[i]);
+                }
+
+                let z = sum_x + sum_y;
+
+                if(z%10===0){
+                    return true;
+                }else{
+                    return false;
+                }
+
+
+
+            }else{
+                return false;
+            }
+
+        };
+
+        form_validation();
+
 
     </script>
 {% endblock %}
