@@ -222,6 +222,11 @@
 
         };
 
+        let scroll_to_first_error_field = function(){
+          $_1(".has-error:first")[0].scrollIntoView();
+        };
+
+
 
         $_1("#coupon_form").submit(function (e) {
 
@@ -266,9 +271,9 @@
                         if ($_1("#" + id).val().length < 14) {
                             return; // continue
                         }
+                    }else{
+                        success_field_state($_1("#" + id));
                     }
-
-                    success_field_state($_1("#" + id));
                 }
             });
 
@@ -282,6 +287,9 @@
                 }
             });
 
+            if(!stripe_form_error){
+                scroll_to_first_error_field();
+            }
 
             Stripe.createToken(card, function (status, response) {
                 if (status === 200) {
@@ -317,6 +325,7 @@
                     $_1("#success_box").hide();
                     $_1("#error_box").show();
                     set_originial_button_state();
+                    scroll_to_first_error_field();
                 }
             });
 
@@ -364,6 +373,7 @@
                 $_1("#success_box").hide();
                 $_1("#error_box").show();
                 set_originial_button_state();
+                scroll_to_first_error_field();
             });
         };
 
