@@ -26,6 +26,7 @@ def coupon_payment_view(request):
                 stripe.Charge.create(api_key=settings.STRIPE_SECRET, amount=int(coupon_amount)*int(100), currency="EUR",
                                      description=f"{coupon}", card=token)
             except error.CardError as e:
+                print(e)
                 return JsonResponse(data={"message": "Ihre Karte wurde abgelehnt"}, status=400, safe=False)
             return JsonResponse(data={"message": "Zahlung erfolgreich", "coupon": f"{coupon}"}, status=201, safe=False)
         else:

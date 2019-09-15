@@ -222,6 +222,9 @@
 
         };
 
+        let original_error_box_html = $_1("#error_box_text").html();
+
+
         let scroll_to_first_error_field = function(){
           if($_1(".has-error:first").length){
               $_1(".has-error:first").get(0).scrollIntoView();
@@ -231,6 +234,9 @@
 
 
         $_1("#coupon_form").submit(function (e) {
+            $_1("#error_box").hide();
+            $_1("#success_box").hide();
+            $_1("#error_box_text").html(original_error_box_html);
 
 
             e.preventDefault();
@@ -364,18 +370,18 @@
                     $_1("#mastercard_icon").hide();
 
                 }).fail(function (data) {
-
-                if (JSON.parse(data.responseText).message == "form_error") {
-                    $_1.each(JSON.parse(data.responseText).errors, function (key, value) {
-                        //$_1("input[name=" + key +"]").closest(".form-group").find(".error_msg").text(value);
-                        error_field_state($_1("input[name=" + key + "]"), value);
-                    });
-                }
-                $_1("#error_box_text").text(data.message);
-                $_1("#success_box").hide();
-                $_1("#error_box").show();
-                set_originial_button_state();
-                scroll_to_first_error_field();
+                    if (JSON.parse(data.responseText).message == "form_error") {
+                        $_1.each(JSON.parse(data.responseText).errors, function (key, value) {
+                            //$_1("input[name=" + key +"]").closest(".form-group").find(".error_msg").text(value);
+                            error_field_state($_1("input[name=" + key + "]"), value);
+                        });
+                    }else{
+                        $_1("#error_box_text").html("<b>" + JSON.parse(data.responseText).message + "</b>");
+                    }
+                    $_1("#success_box").hide();
+                    $_1("#error_box").show();
+                    set_originial_button_state();
+                    scroll_to_first_error_field();
             });
         };
 
