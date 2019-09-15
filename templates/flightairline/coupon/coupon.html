@@ -28,6 +28,8 @@
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
                 <div class="booking-form" style="margin-bottom:30px;">
+                    <h3 style="margin-top:0;">Gutschein</h3>
+                    <hr/>
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             Gutschein auswählen
@@ -107,10 +109,10 @@
 
                                     <div>
                                         <div class="pull-right">
-                                            <a href="#" data-toggle="popover" data-trigger="hover"
+                                            <a href="#" data-toggle="popover" data-placement="bottom" data-trigger="click hover"
                                                data-content="<img src='{% static "flightairline/img/cvc.jpg" %}'></img>"><i
                                                     id="cvv_info" class="fa fa-info-circle"
-                                                    style="color:#292b2c;cursor: pointer"></i></a><br>
+                                                    style="color:#292b2c;cursor: pointer;"></i></a><br>
                                         </div>
                                         <div class="pull-left">
                                             {% include 'flightairline/form_snippets/feedback_field.html' %}

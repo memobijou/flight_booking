@@ -1,19 +1,79 @@
-<footer class="container-fluid" style="padding-top:20px;margin-bottom:0;background:#292b2c;">
-    <div>
-        <div class="col-md-12 text-center" style="padding: 5px 50px 5px 50px;color:#ccc;margin:0 0 15px;">
-            <a style="color:inherit;cursor:pointer;">Impressum</a> |
-            <a style="color:inherit;cursor:pointer;">Datenschutz</a> |
-            <a style="color:inherit;cursor:pointer;" href="{% url 'vacation' %}">Urlaub</a> |
-            <a style="color:inherit;cursor:pointer;" href="{% url 'flight_route' %}">Flugrouten</a> |
-            <a href="{% url 'airport' %}" style="color:inherit;cursor:pointer;">Flughäfen</a> |
-            <a href="{% url 'tour_operator' %}" style="color:inherit;cursor:pointer;">Reiseveranstalter</a> |
-            <a href="{% url 'last_minute' %}" style="color:inherit;cursor:pointer;">Last Minute Flüge</a> |
-            <a href="{% url 'cheap_flight' %}" style="color:inherit;cursor:pointer;">Billigflüge</a> |
-            <a href="{% url 'airline' %}" style="color:inherit;cursor:pointer;">Airlines</a> |
-            <a href="{% url 'flight' %}" style="color:inherit;cursor:pointer;">Flüge</a>
+<style>
+    .icons8-mastercard {
+        display: inline-block;
+        width: 48px;
+        height: 48px;
+        background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjBweCIgeT0iMHB4Igp3aWR0aD0iNDgiIGhlaWdodD0iNDgiCnZpZXdCb3g9IjAgMCA0OCA0OCIKc3R5bGU9IiBmaWxsOiMwMDAwMDA7Ij48cGF0aCBmaWxsPSIjM0Y1MUI1IiBkPSJNNDUsMzVjMCwyLjIwOS0xLjc5MSw0LTQsNEg3Yy0yLjIwOSwwLTQtMS43OTEtNC00VjEzYzAtMi4yMDksMS43OTEtNCw0LTRoMzRjMi4yMDksMCw0LDEuNzkxLDQsNFYzNXoiPjwvcGF0aD48cGF0aCBmaWxsPSIjRkZDMTA3IiBkPSJNMzAgMTRBMTAgMTAgMCAxIDAgMzAgMzRBMTAgMTAgMCAxIDAgMzAgMTRaIj48L3BhdGg+PHBhdGggZmlsbD0iI0ZGM0QwMCIgZD0iTTIyLjAxNCwzMGMtMC40NjQtMC42MTctMC44NjMtMS4yODQtMS4xNzYtMmg1LjMyNWMwLjI3OC0wLjYzNiwwLjQ5Ni0xLjMwNCwwLjYzNy0yaC02LjU5OEMyMC4wNywyNS4zNTQsMjAsMjQuNjg2LDIwLDI0aDdjMC0wLjY4Ni0wLjA3LTEuMzU0LTAuMjAxLTJoLTYuNTk4YzAuMTQyLTAuNjk2LDAuMzU5LTEuMzY0LDAuNjM3LTJoNS4zMjVjLTAuMzEzLTAuNzE2LTAuNzExLTEuMzgzLTEuMTc2LTJoLTIuOTczYzAuNDM3LTAuNTgsMC45My0xLjEyMiwxLjQ4MS0xLjU5NUMyMS43NDcsMTQuOTA5LDE5LjQ4MSwxNCwxNywxNGMtNS41MjMsMC0xMCw0LjQ3Ny0xMCwxMHM0LjQ3NywxMCwxMCwxMGMzLjI2OSwwLDYuMTYyLTEuNTc1LDcuOTg2LTRIMjIuMDE0eiI+PC9wYXRoPjwvc3ZnPg==') 50% 50% no-repeat;
+        background-size: 100%;
+    }
+
+    .icons8-visa {
+        display: inline-block;
+        width: 48px;
+        height: 48px;
+        background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjBweCIgeT0iMHB4Igp3aWR0aD0iNDgiIGhlaWdodD0iNDgiCnZpZXdCb3g9IjAgMCA0OCA0OCIKc3R5bGU9IiBmaWxsOiMwMDAwMDA7Ij48cGF0aCBmaWxsPSIjMTU2NUMwIiBkPSJNNDUsMzVjMCwyLjIwOS0xLjc5MSw0LTQsNEg3Yy0yLjIwOSwwLTQtMS43OTEtNC00VjEzYzAtMi4yMDksMS43OTEtNCw0LTRoMzRjMi4yMDksMCw0LDEuNzkxLDQsNFYzNXoiPjwvcGF0aD48cGF0aCBmaWxsPSIjRkZGIiBkPSJNMTUuMTg2IDE5bC0yLjYyNiA3LjgzMmMwIDAtLjY2Ny0zLjMxMy0uNzMzLTMuNzI5LTEuNDk1LTMuNDExLTMuNzAxLTMuMjIxLTMuNzAxLTMuMjIxTDEwLjcyNiAzMHYtLjAwMmgzLjE2MUwxOC4yNTggMTlIMTUuMTg2ek0xNy42ODkgMzBMMjAuNTYgMzAgMjIuMjk2IDE5IDE5LjM4OSAxOXpNMzguMDA4IDE5aC0zLjAyMWwtNC43MSAxMWgyLjg1MmwuNTg4LTEuNTcxaDMuNTk2TDM3LjYxOSAzMGgyLjYxM0wzOC4wMDggMTl6TTM0LjUxMyAyNi4zMjhsMS41NjMtNC4xNTcuODE4IDQuMTU3SDM0LjUxM3pNMjYuMzY5IDIyLjIwNmMwLS42MDYuNDk4LTEuMDU3IDEuOTI2LTEuMDU3LjkyOCAwIDEuOTkxLjY3NCAxLjk5MS42NzRsLjQ2Ni0yLjMwOWMwIDAtMS4zNTgtLjUxNS0yLjY5MS0uNTE1LTMuMDE5IDAtNC41NzYgMS40NDQtNC41NzYgMy4yNzIgMCAzLjMwNiAzLjk3OSAyLjg1MyAzLjk3OSA0LjU1MSAwIC4yOTEtLjIzMS45NjQtMS44ODguOTY0LTEuNjYyIDAtMi43NTktLjYwOS0yLjc1OS0uNjA5bC0uNDk1IDIuMjE2YzAgMCAxLjA2My42MDYgMy4xMTcuNjA2IDIuMDU5IDAgNC45MTUtMS41NCA0LjkxNS0zLjc1MkMzMC4zNTQgMjMuNTg2IDI2LjM2OSAyMy4zOTQgMjYuMzY5IDIyLjIwNnoiPjwvcGF0aD48cGF0aCBmaWxsPSIjRkZDMTA3IiBkPSJNMTIuMjEyLDI0Ljk0NWwtMC45NjYtNC43NDhjMCwwLTAuNDM3LTEuMDI5LTEuNTczLTEuMDI5Yy0xLjEzNiwwLTQuNDQsMC00LjQ0LDBTMTAuODk0LDIwLjg0LDEyLjIxMiwyNC45NDV6Ij48L3BhdGg+PC9zdmc+') 50% 50% no-repeat;
+        background-size: 100%;
+    }
+</style>
+
+<footer>
+    <div class="container-fluid" style="padding-top:20px;margin-bottom:0;background:#292b2c;">
+        <div class="container">
+            <div class="footer">
+                <div class="col-md-12" style="color:#ccc;">
+                    <div>
+                        <div class="col-md-3">
+                            <p>
+                                <a style="color:inherit;cursor:pointer;" href="{% url 'vacation' %}">Urlaub</a>
+                            </p>
+                            <p>
+                                <a style="color:inherit;cursor:pointer;" href="{% url 'flight_route' %}">Flugrouten</a>
+                            </p>
+                            <p>
+                                <a href="{% url 'airport' %}" style="color:inherit;cursor:pointer;">Flughäfen</a>
+                            </p>
+                        </div>
+                        <div class="col-md-3">
+                            <p>
+                                <a href="{% url 'tour_operator' %}" style="color:inherit;cursor:pointer;">Reiseveranstalter</a>
+                            </p>
+                            <p>
+                                <a href="{% url 'last_minute' %}" style="color:inherit;cursor:pointer;">Last Minute Flüge</a>
+                            </p>
+                            <p>
+                                <a href="{% url 'cheap_flight' %}" style="color:inherit;cursor:pointer;">Billigflüge</a>
+                            </p>
+                        </div>
+                        <div class="col-md-3">
+                            <p>
+                                <a href="{% url 'airline' %}" style="color:inherit;cursor:pointer;">Airlines</a>
+                            </p>
+                            <p>
+                                <a href="{% url 'flight' %}" style="color:inherit;cursor:pointer;">Flüge</a>
+                            </p>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="text-right">
+                                <p style="text-decoration: underline">Zahlungsmöglichkeiten</p>
+                                <span class="icons8-mastercard"></span>
+                                <span class="icons8-visa"></span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col-md-12 text-center" style="padding: 5px 50px 5px 50px;color:#ccc;margin:0 0 15px;">
-            © 2019 Flybookers
+    </div>
+    <div class="container-fluid" style="background:#2c2e2f;color:#ccc;padding:5px 0 20px 0;">
+        <div class="container">
+            <div class="col-md-12" style="color:#ccc;">
+                <div class="col-md-12 text-right">
+                    <a style="color:inherit;cursor:pointer;">Impressum</a> &nbsp;&nbsp; | &nbsp;&nbsp;
+                    <a style="color:inherit;cursor:pointer;">Datenschutz</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    © 2019 Flybookers
+                </div>
+            </div>
         </div>
     </div>
 </footer>
