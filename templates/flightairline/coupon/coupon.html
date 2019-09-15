@@ -223,7 +223,9 @@
         };
 
         let scroll_to_first_error_field = function(){
-          $_1(".has-error:first")[0].scrollIntoView();
+          if($_1(".has-error:first").length){
+              $_1(".has-error:first").get(0).scrollIntoView();
+          }
         };
 
 
