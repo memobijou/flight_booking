@@ -3,7 +3,14 @@
         <div class="col-md-12 text-center" style="padding: 5px 50px 5px 50px;color:#ccc;margin:0 0 15px;">
             <a style="color:inherit;cursor:pointer;">Impressum</a> |
             <a style="color:inherit;cursor:pointer;">Datenschutz</a> |
-            <a style="color:inherit;cursor:pointer;">Kontakt</a>
+            <a style="color:inherit;cursor:pointer;" href="{% url 'vacation' %}">Urlaub</a> |
+            <a style="color:inherit;cursor:pointer;" href="{% url 'flight_route' %}">Flugrouten</a> |
+            <a href="{% url 'airport' %}" style="color:inherit;cursor:pointer;">Flughäfen</a> |
+            <a href="{% url 'tour_operator' %}" style="color:inherit;cursor:pointer;">Reiseveranstalter</a> |
+            <a href="{% url 'last_minute' %}" style="color:inherit;cursor:pointer;">Last Minute Flüge</a> |
+            <a href="{% url 'cheap_flight' %}" style="color:inherit;cursor:pointer;">Billigflüge</a> |
+            <a href="{% url 'airline' %}" style="color:inherit;cursor:pointer;">Airlines</a> |
+            <a href="{% url 'flight' %}" style="color:inherit;cursor:pointer;">Flüge</a>
         </div>
         <div class="col-md-12 text-center" style="padding: 5px 50px 5px 50px;color:#ccc;margin:0 0 15px;">
             © 2019 Flybookers
