@@ -8,7 +8,7 @@
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>
-        Flybookers
+        Flybookers.de
     </title>
     <!-- Google font -->
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet" />
@@ -60,8 +60,10 @@
 <body>
     <div class="section" id="booking">
         <div id="bg_container">
+            {% block menu %}
             <section id="menu">
                 <div class="container">
+
                     <nav class="navbar navbar-default">
                         <div class="container-fluid">
                             <!-- Brand and toggle get grouped for better mobile display -->
@@ -124,12 +126,15 @@
                     </nav>
                 </div>
             </section>
+            {% endblock %}
             {% block main_content %}
             {% endblock %}
         </div>
         {% block content %}
         {% endblock %}
-        {% include 'flightairline/impressum.html' %}
+        {% block footer %}
+            {% include 'flightairline/impressum.html' %}
+        {% endblock %}
 
     </div>
     <script src="{% static 'vendor/jquery/js/jquery-1.12.4.js' %}">

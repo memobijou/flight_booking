@@ -1,8 +1,22 @@
-{% extends 'flightairline/index.html' %}
+{% extends 'flightairline/base.html' %}
 
 
 {% block content %}
-    {% include 'flightairline/index/instruction_row.html' %}
-    {% include 'flightairline/index/between_bg_row.html' %}
+    <div class="container-fluid" style="padding-top:5px;margin-bottom:0;">
+        <div class="container">
+            <div class="col-md-12" style="padding:0;">
+                <div class="col-md-12">
+                    <h1><a href="{% url 'main' %}">Zurück zur Startseite</a></h1>
+                </div>
+            </div>
+        </div>
+    </div>
     {% include 'flightairline/impressum/description_row.html' %}
+{% endblock %}
+
+{% block menu %}
+{% endblock %}
+
+
+{% block footer %}
 {% endblock %}

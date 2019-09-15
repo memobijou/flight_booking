@@ -1,5 +1,5 @@
 {% load static %}
-<div class="container-fluid" style="padding-top:5px;margin-bottom:0;border-top:1px dashed;">
+<div class="container-fluid" style="padding-top:5px;margin-bottom:0;">
     <div class="container">
         <div class="col-md-12" style="padding:0;">
             <div class="col-md-12">
@@ -34,21 +34,16 @@
        ‍
        <br>
       </strong>
-      <a href="mailto:vonova@web.de" target="_blank">
-       Email: vonova@web.de
-      </a>
+      <p>Email:</p>
+      <p>
+          <a href="mailto:vonova@web.de" target="_blank">
+            vonova@web.de
+          </a>
+      </p>
       <br>
-      <strong>
-       <br>
-      </strong>
-      Link zum Impressum:
-      <br>
-      ‍
-      <a href="/impressum">
-       Impressum
-      </a>
-      <br>
-      <br>
+
+      <p>Link zum Impressum:</p>
+      <p><a href="{% url 'impressum' %}">Impressum</a></p>
       <strong>
        <br>
        Arten der verarbeiteten Daten
