@@ -65,7 +65,22 @@
                                     <label class="radio-inline"><input type="radio" name="coupon_amount" value="500">500€</label>
                                  </span>
                                 </div>
-                                {% include 'flightairline/form_snippets/feedback_field.html' %}
+                              <div class="col-md-12" style="padding:0;">
+                                <div class="checkbox" style="margin-bottom:0;">
+                                      <label>
+                                          <input type="checkbox" value="" id="manual_coupon_amount_checkbox">Manuell Preis eingeben
+                                      </label>
+                                  </div>
+                              </div>
+
+                              <div class="col-md-12" style="padding:10px 0 0 0;display:none;" id="manual_coupon_amount_parent">
+                                  <div class="col-md-5" style="padding:0;">
+                                      <label>
+                                          <input class="form-control" style="height:34px;padding-top:0;" type="number" id="manual_coupon_amount" name="coupon_amount"/>
+                                      </label>
+                                  </div>
+                              </div>
+                              {% include 'flightairline/form_snippets/feedback_field.html' %}
                             </div>
                         </div>
                     </div>
@@ -190,6 +205,35 @@
 
 {% block js %}
     <script>
+        let manual_coupon_amount_state = false;
+
+        let hide_manual_state = function(){
+              $_1("input[name=coupon_amount]:radio").removeAttr("disabled");
+              $_1("#manual_coupon_amount_parent").hide();
+              manual_coupon_amount_state = false;
+        };
+
+        let show_manual_state = function(){
+              $_1("input[name=coupon_amount]:radio").attr("disabled", "");
+              $_1("#manual_coupon_amount_parent").show();
+              manual_coupon_amount_state = true;
+        };
+
+        let change_manual_or_radio_state = function(checkbox){
+            if($_1(checkbox).is(":checked")){
+                show_manual_state();
+            }else{
+                hide_manual_state();
+            }
+        };
+
+        change_manual_or_radio_state($_1("#manual_coupon_amount_checkbox"));
+
+        $_1("#manual_coupon_amount_checkbox").on("change", function(e){
+            change_manual_or_radio_state(this);
+        });
+
+
         $_1(document).ready(function () {
             $_1('[data-toggle="popover"]').popover({html: true});
         });
@@ -245,7 +289,12 @@
             submit_btn.text("In Bearbeitung ... ");
 
             let form = this;
-            let coupon_amount = $_1("input[name='coupon_amount']:checked").val();
+            let coupon_amount = null;
+            if(manual_coupon_amount_state){
+                coupon_amount = $_1("#manual_coupon_amount").val();
+            }else{
+                coupon_amount = $_1("input[name='coupon_amount']:checked").val();
+            }
 
             let exp_month = $_1("#month").find(":selected").val();
             let exp_year = $_1("#year").find(":selected").val();
@@ -356,6 +405,8 @@
                     $_1("#success_box").show();
                     $_1(".error_msg").text("");
                     $_1("input:radio").prop("checked", false);
+                    hide_manual_state();
+                    $_1("input:checkbox").prop("checked", false);
                     form.reset();
                     let form_group = $_1(".form-group");
                     let error_field = form_group.find(".error_msg");

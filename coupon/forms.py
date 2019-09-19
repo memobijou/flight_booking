@@ -10,6 +10,6 @@ class CouponForm(forms.Form):
 
     def clean_coupon_amount(self):
         data = self.cleaned_data.get("coupon_amount")
-        if data not in coupon_amounts:
-            self.add_error("coupon_amount", "Ungültiger Gutschein.")
+        if data > 500:
+            self.add_error("coupon_amount", "Der Betrag darf nicht höher als 500€ sein")
         return data

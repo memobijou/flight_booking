@@ -49,6 +49,11 @@
             z-index: 0;
         }
 
+        @media only screen and (max-width: 1000px) {
+            .booking-form {
+                margin-top:80px;
+            }
+        }
 
 
     </style>
@@ -79,9 +84,9 @@
                                     <span class="icon-bar">
              </span>
                                 </button>
-                                <a class="navbar-brand text-dark" href="{% url 'main' %}" style="font-size:35px;color:#292b2c;">
-                                Flybookers
-                            </a>
+                                <a class="navbar-brand" href="{% url 'main' %}" style="font-size:35px;color:#292b2c;">
+                                    <img class="img img-responsive" style="max-height:100px;" src="{% static 'flightairline/img/logo.jpeg' %}"/>
+                                </a>
                             </div>
                             <!-- Collect the nav links, forms, and other content for toggling -->
                             <div class="collapse navbar-collapse" id="header">
