@@ -38,7 +38,8 @@ class SendMailView(View):
                 body += f"<strong>Reiseklasse:</strong> {travel_class}<br/>"
                 body += f"<strong>{flight_type}</strong><br/>"
                 body += f"<strong>Rufnummer: </strong>{phone}<br/>"
-                email = EmailMessage(f"{flight_from} - {flight_to}", body, to=["mbijou@live.de", "osman_2008@hotmail.de"])
+                email = EmailMessage(f"{flight_from} - {flight_to}", body,
+                                     to=["mbijou@live.de", "osman_2008@hotmail.de", "info@flybookers.de"])
                 email.content_subtype = "html"
                 status = email.send()
                 if status == 1:
