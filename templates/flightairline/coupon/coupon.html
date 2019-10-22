@@ -185,7 +185,88 @@
                                 </div>
                             </div>
 
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <span class="form-label">
+                                        Vorname
+                                    </span>
+                                    <input class="form-control" id="first_name" name="first_name"/>
+                                    {% include 'flightairline/form_snippets/feedback_field.html' %}
 
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <span class="form-label">
+                                        Nachname
+                                    </span>
+                                    <input class="form-control" id="last_name" name="last_name"/>
+                                    {% include 'flightairline/form_snippets/feedback_field.html' %}
+                                </div>
+                            </div>
+
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <span class="form-label">
+                                        Straße
+                                    </span>
+                                    <input class="form-control" id="street" name="street"/>
+                                    {% include 'flightairline/form_snippets/feedback_field.html' %}
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <span class="form-label">
+                                        Hausnummer
+                                    </span>
+                                    <input class="form-control" id="house_number" name="house_number"/>
+                                    {% include 'flightairline/form_snippets/feedback_field.html' %}
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                <span class="form-label">Land</span>
+                                    <select class="form-control" id="country">
+                                        <option value="">------</option>
+                                        {% for name, code in countries %}
+                                            <option value="{{ code }}">
+                                                {{ name }}
+                                            </option>
+                                        {% endfor %}
+                                    </select>
+                                    <span class="select-arrow"></span>
+                                    {% include 'flightairline/form_snippets/feedback_field.html' %}
+
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <span class="form-label">
+                                        Stadt
+                                    </span>
+                                    <input class="form-control" id="city" name="city"/>
+                                    {% include 'flightairline/form_snippets/feedback_field.html' %}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <span class="form-label">
+                                        Postleitzahl
+                                    </span>
+                                    <input class="form-control" id="zip_code" name="zip_code"/>
+                                    {% include 'flightairline/form_snippets/feedback_field.html' %}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <span class="form-label">
+                                        Bundesland
+                                    </span>
+                                    <input class="form-control" id="state" name="state"/>
+                                    {% include 'flightairline/form_snippets/feedback_field.html' %}
+                                </div>
+                            </div>
                         </div>
 
                         <div class="form-btn">
@@ -303,15 +384,21 @@
                 number: $_1("#credit_card_number").val(),
                 cvc: $_1("#cvv").val(),
                 expMonth: exp_month,
-                expYear: exp_year
+                expYear: exp_year,
+                name: $_1("#first_name").val() + " " + $_1("#last_name").val(),
+                address_line1: $_1("#street").val() + " " + $_1("#house_number").val(),
+                address_zip: $_1("#zip_code").val(),
+                address_country: $_1("#country").val(),
+                address_state: $_1("#state").val()
+
             };
 
             let credit_card_token = "";
 
             let stripe_form_error = false;
 
-            let required_inputs = ["credit_card_number", "cvv"];
-            let required_selects = ["month", "year"];
+            let required_inputs = ["credit_card_number", "cvv", "first_name", "last_name", "street", "house_number", "city", "zip_code"];
+            let required_selects = ["month", "year", "country"];
 
             if (!coupon_amount) {
                 error_field_state($_1("input[name='coupon_amount']"), "Dieses Feld ist erforderlich");

@@ -5,12 +5,16 @@ import stripe
 from stripe import error
 import random
 from coupon.forms import CouponForm
+import pycountry
 
 
 # Create your views here.
 def coupon_view(request):
+    countries = []
+    for country in pycountry.countries:
+        countries.append((country.name, country.alpha_2))
     context = {"STRIPE_PUBLISHABLE": settings.STRIPE_PUBLISHABLE, "months_dropdown": range(1, 13),
-               "years_dropdown": range(2019, 2051)}
+               "years_dropdown": range(2019, 2051), "countries": countries}
     return render(request, "flightairline/coupon/coupon.html", context)
 
 
